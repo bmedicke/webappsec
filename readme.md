@@ -64,8 +64,9 @@
 
 ### Template, Vulnerability Remediation
 
-* [template](template.md)
+* [**template**](template.md)
 
 ## CTF writeup
 
-* [CTF writeup](ctf.md)
+* [**CTF writeup**](ctf.md)
+* [👨‍🏫 Setup](https://andreashappe.github.io/lecture-web-security/presentation-web-app-sec/presentation.html#/setup)
