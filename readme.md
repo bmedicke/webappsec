@@ -1,4 +1,12 @@
-# Task 1
+# Web Application Security
+
+> Exploits are the closest thing to “magic spells”
+> we experience in the real world:<br>
+> Construct the right incantation,
+> gain remote control over device.
+>
+> @halvarflake
+
 
 * create an account or download a VM
 * do excercises for 1-2 hours
