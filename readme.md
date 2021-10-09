@@ -7,6 +7,18 @@
 >
 > @halvarflake
 
+---
+
+
+<!-- vim-markdown-toc GFM -->
+
+* [Task 1, Hacking](#task-1-hacking)
+* [Task 2, Secure Coding](#task-2-secure-coding)
+* [Task 3, Secure Coding 2](#task-3-secure-coding-2)
+	* [Template, Vulnerability Remediation](#template-vulnerability-remediation)
+
+<!-- vim-markdown-toc -->
+
 
 * create an account or download a VM
 * do excercises for 1-2 hours
