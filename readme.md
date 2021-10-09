@@ -32,7 +32,7 @@
 * how was the usability?
 * what did you learn/what VMs did you try?
 * submit until Monday, November 23rd 2020
-* [Online Anbieter](https://andreashappe.github.io/lecture-web-security/presentation-web-app-sec/presentation.html#/online-anbieter) (labs, see following slide)
+* [👨‍🏫 Online Anbieter](https://andreashappe.github.io/lecture-web-security/presentation-web-app-sec/presentation.html#/online-anbieter) (labs, see following slide)
 
 
 ## Task 2, Secure Coding
@@ -48,7 +48,7 @@
 * later: multi-user, SQL-Database (still in memory)
 * bonus: OAuth2, XML/XEE?
 * review and test with netsparker
-* [basic steps](https://andreashappe.github.io/lecture-web-security/presentation-web-app-sec/presentation.html#/basic-steps)
+* [👨‍🏫 basic steps](https://andreashappe.github.io/lecture-web-security/presentation-web-app-sec/presentation.html#/basic-steps)
 
 ## Task 3, Secure Coding 2
 
@@ -59,8 +59,8 @@
 * Alternativ auch andere Software-Projekte
 * Zwischenabgabe:
 * check ob Umfang passt (1-3 Gegenmassnahmen)
-* [hints for juiceshop](https://andreashappe.github.io/lecture-web-security/presentation-web-app-sec/presentation.html#/hints-for-juiceshop)
-* [Alternativen fuer 1-2 Gegenmassnahmen](https://andreashappe.github.io/lecture-web-security/presentation-web-app-sec/presentation.html#/alternativen-f%C3%BCr-1-2-gegenmassnahmen)
+* [👨‍🏫 hints for juiceshop](https://andreashappe.github.io/lecture-web-security/presentation-web-app-sec/presentation.html#/hints-for-juiceshop)
+* [👨‍🏫 Alternativen fuer 1-2 Gegenmassnahmen](https://andreashappe.github.io/lecture-web-security/presentation-web-app-sec/presentation.html#/alternativen-f%C3%BCr-1-2-gegenmassnahmen)
 
 ### Template, Vulnerability Remediation
 
