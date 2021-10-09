@@ -16,6 +16,7 @@
 * [Task 2, Secure Coding](#task-2-secure-coding)
 * [Task 3, Secure Coding 2](#task-3-secure-coding-2)
 	* [Template, Vulnerability Remediation](#template-vulnerability-remediation)
+* [CTF writeup](#ctf-writeup)
 
 <!-- vim-markdown-toc -->
 
@@ -95,3 +96,7 @@ grep-patterns, how to find similar vulnerabilities?
 
 - links to web-pages, articles, etc. that you used while writing this
 ```
+
+## CTF writeup
+
+[CTF writeup](ctf.md)
