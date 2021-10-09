@@ -64,8 +64,8 @@
 
 ### Template, Vulnerability Remediation
 
-[template](template.md)
+* [template](template.md)
 
 ## CTF writeup
 
-[CTF writeup](ctf.md)
+* [CTF writeup](ctf.md)
