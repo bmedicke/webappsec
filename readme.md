@@ -32,6 +32,8 @@
 * how was the usability?
 * what did you learn/what VMs did you try?
 * submit until Monday, November 23rd 2020
+* [Online Anbieter](https://andreashappe.github.io/lecture-web-security/presentation-web-app-sec/presentation.html#/online-anbieter) (labs, see following slide)
+
 
 ## Task 2, Secure Coding
 
