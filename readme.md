@@ -35,6 +35,9 @@ cd flask-backend
 flask run # see .flaskenv for envvars.
 ```
 
+*note: the `.flaskenv` file should not be commited if there are
+any secrets stored in it*
+
 # FastAPI
 
 # Connexion
