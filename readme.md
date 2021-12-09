@@ -25,12 +25,15 @@
 ```sh
 python3 -m venv env && source env/bin/activate
 pip install -r requirements.txt
-# flask, fastapi, connexion, python-dotenv
 
 docker-compose up -d # start db and adminer.
 ```
 
 * [adminer (localhost:7780)](http://localhost:7780)
+* used libraries:
+    * flask, fastapi, connexion
+    * python-dotenv
+    * sqlalchemy, psycopg[pool,binary]
 
 # Flask
 
