@@ -42,11 +42,13 @@ docker-compose up -d # start db and adminer.
         * for setting environment variables from `.env` files
     * sqlalchemy
         * object relational mapper
-    * psycopg[pool,binary]
+    * psycopg[pool,binary] (versions 3) and psycopg2-binary (version 2)
         * Postres adapter (for notify/listen evens)
     * black
         * code formatter
         * `black -l79 **/*.py`
+    * ptpython, ipython
+        * for proper code completion in breakpoints/repl
 
 ---
 
