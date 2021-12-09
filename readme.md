@@ -44,6 +44,9 @@ docker-compose up -d # start db and adminer.
         * object relational mapper
     * psycopg[pool,binary]
         * Postres adapter (for notify/listen evens)
+    * black
+        * code formatter
+        * `black -l79 **/*.py`
 
 # Flask
 

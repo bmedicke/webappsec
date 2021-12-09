@@ -1,5 +1,6 @@
 anyio==3.4.0
 attrs==21.2.0
+black==21.12b0
 certifi==2021.10.8
 charset-normalizer==2.0.9
 click==7.1.2
@@ -15,8 +16,11 @@ itsdangerous==1.1.0
 Jinja2==2.11.3
 jsonschema==3.2.0
 MarkupSafe==2.0.1
+mypy-extensions==0.4.3
 openapi-schema-validator==0.1.5
 openapi-spec-validator==0.3.1
+pathspec==0.9.0
+platformdirs==2.4.0
 psycopg==3.0.5
 psycopg-binary==3.0.5
 psycopg-pool==3.0.2
@@ -29,6 +33,7 @@ six==1.16.0
 sniffio==1.2.0
 SQLAlchemy==1.4.27
 starlette==0.16.0
+tomli==1.2.2
 typing-extensions==4.0.1
 urllib3==1.26.7
 Werkzeug==1.0.1
