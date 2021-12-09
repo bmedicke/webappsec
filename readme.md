@@ -26,17 +26,20 @@
 python3 -m venv env && source env/bin/activate
 pip install -r requirements.txt
 # flask, fastapi, connexion, python-dotenv
+
+docker-compose up -d # start db and adminer.
 ```
 
-# Flask
+* [adminer (localhost:7780)](http://localhost:7780)
 
-http://localhost:7701
+# Flask
 
 ```sh
 cd flask-backend
 flask run # see .flaskenv for envvars.
 ```
 
+* [flask (localhost:7701)](http://localhost:7701)
 * *security note: the `.flaskenv` file should not be commited if there are
 any secrets stored in it*
     * you could use the `.env` file for secrets
