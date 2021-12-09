@@ -21,6 +21,8 @@ CREATE TABLE test (
 );
 """
 
+# insert using bound parameters
+# to avoid SQL injections:
 insert_coords = """
 INSERT INTO test (x, y)
 VALUES (:x, :y);
@@ -36,11 +38,15 @@ coords = [{"x": 42, "y": 0}, {"x": 8, "y": 13}, {"x": 21, "y": -2}]
 # "begin once"
 with engine.connect() as conn:
     conn.execute(text(create_db))
+    # for DML statements we can send multiple sets of parameters:
     conn.execute(text(insert_coords), coords)
     result = conn.execute(text(select_all))
     rows = result.all()
-    for x, y in rows:
-        print(f"x: {x}, y: {y}")
+
+    # tuple assignment:
+    for i, (x, y) in enumerate(rows):
+        print(f"row: {i}\tx: {x}, y: {y}")
+
     from ptpython.repl import embed
     embed(globals(), locals())
 
