@@ -41,6 +41,6 @@ with engine.connect() as conn:
     rows = result.all()
     for x, y in rows:
         print(f"x: {x}, y: {y}")
-    embed(globals(), locals())
     from ptpython.repl import embed
+    embed(globals(), locals())
 
