@@ -40,9 +40,10 @@ flask run # see .flaskenv for envvars.
 * *security note: the `.flaskenv` file should not be commited if there are
 any secrets stored in it*
     * you could use the `.env` file for secrets
-    * `http://localhost:7701/i/<body onload='alert("this is bad");'>`
 * *security note: when returning HTML (the default) user provided values
 must be `escape()`d to prevent injections*
+    * unsafe: `http://localhost:7701/i/<body onload='alert("this is bad");'>`
+    * safe: `http://localhost:7701/u/<body onload='alert("this is bad");'>`
     * Jinja templates do this automatically
 
 # FastAPI
