@@ -19,6 +19,8 @@ def user_profile(user_id):
 
 """
 injection demo route:
+
+localhost:7701/i/<body onload='alert("this is bad");'>
 """
 @app.route("/i/<unescaped>")
 def injection(unescaped):
