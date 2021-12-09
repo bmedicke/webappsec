@@ -30,10 +30,16 @@ docker-compose up -d # start db and adminer.
 ```
 
 * [adminer (localhost:7780)](http://localhost:7780)
+    * web-based DB-GUI
 * used libraries:
     * flask, fastapi, connexion
+        * the libraries to compare
     * python-dotenv
-    * sqlalchemy, psycopg[pool,binary]
+        * for setting environment variables from `.env` files
+    * sqlalchemy
+        * object relational mapper
+    * psycopg[pool,binary]
+        * Postres adapter (for notify/listen evens)
 
 # Flask
 
