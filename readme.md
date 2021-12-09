@@ -48,6 +48,13 @@ docker-compose up -d # start db and adminer.
         * code formatter
         * `black -l79 **/*.py`
 
+---
+
+other interesting libs:
+
+* https://github.com/flasgger/flasgger
+* https://flask-sqlalchemy.palletsprojects.com/
+
 # Flask
 
 ```sh
