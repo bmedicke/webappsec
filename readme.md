@@ -32,9 +32,7 @@ pip install -r requirements.txt
 
 ```sh
 cd flask-backend
-export FLASK_APP=api
-export FLASK_ENV=development
-flask run --host 0.0.0.0 --port 7701 # bind to all interfaces.
+flask run # see .flaskenv for envvars.
 ```
 
 # FastAPI
