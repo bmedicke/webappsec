@@ -29,8 +29,12 @@ pip install -r requirements.txt
 docker-compose up -d # start db and adminer.
 ```
 
-* [adminer (localhost:7780)](http://localhost:7780)
-    * web-based DB-GUI
+* docker-compose services
+    * **db**: Postgres
+        * *security note: standard password should be changed to something secure*
+        * *security note: password should be removed from docker-compose file (and it should probably not be commited)*
+    * [**adminer** (localhost:7780)](http://localhost:7780)
+        * web-based DB-GUI
 * used libraries:
     * flask, fastapi, connexion
         * the libraries to compare
