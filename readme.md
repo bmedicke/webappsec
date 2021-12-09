@@ -13,11 +13,19 @@
 
 <!-- vim-markdown-toc GFM -->
 
+* [Setup](#setup)
 * [Flask](#flask)
 * [FastAPI](#fastapi)
 * [Connexion](#connexion)
 
 <!-- vim-markdown-toc -->
+
+# Setup
+
+```sh
+python3 -m venv env
+source env/bin/activate
+```
 
 # Flask
 
