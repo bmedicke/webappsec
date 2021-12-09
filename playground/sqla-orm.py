@@ -34,7 +34,6 @@ class Message(Base):
     __tablename__ = "messages"
     id = Column(Integer, primary_key=True)
     text = Column(String(100), nullable=False)
-    # from is a keyword.
     by = Column(ForeignKey("user_accounts.id"), nullable=False)
     to = Column(ForeignKey("user_accounts.id"))
 
