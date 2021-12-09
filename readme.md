@@ -49,6 +49,9 @@ docker-compose up -d # start db and adminer.
         * `black -l79 **/*.py`
     * ptpython, ipython
         * for proper code completion in breakpoints/repl
+    * bcrypt
+        * salt and hashing
+            * *security note: bcrypt truncates passwords to 72 bytes*
 
 ---
 

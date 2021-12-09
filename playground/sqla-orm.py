@@ -2,7 +2,9 @@
 
 from ptpython.repl import embed
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
-from sqlalchemy.orm import registry
+from sqlalchemy.orm import registry, Session
+import bcrypt
+import hashlib
 
 # lazy initialized engine provides factory and connection pool:
 engine = create_engine(
@@ -27,7 +29,9 @@ Base = mapper_registry.generate_base()
 class User(Base):
     __tablename__ = "user_accounts"
     id = Column(Integer, primary_key=True)
-    name = Column(String(30), nullable=False)
+    name = Column(String(30), nullable=False, unique=True)
+    salt = Column(String(), nullable=False)
+    password = Column(String(), nullable=False)  # hashed and salted.
 
 
 class Message(Base):
@@ -42,4 +46,16 @@ class Message(Base):
 mapper_registry.metadata.drop_all(engine)
 mapper_registry.metadata.create_all(engine)
 
-embed(globals(), locals(), configure=configure)
+with Session(engine) as session:
+
+    username = "Ben"
+    salt = bcrypt.gensalt(rounds=12)
+    password = b"password"
+
+    # careful! pass is truncated to 72 bytes.
+    hashed_pass = bcrypt.hashpw(password, salt)
+    session.add(User(name=username, password=hashed_pass, salt=salt))
+
+    session.commit()
+
+    # embed(globals(), locals(), configure=configure)
