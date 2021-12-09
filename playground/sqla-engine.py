@@ -47,6 +47,7 @@ with engine.connect() as conn:
     for i, (x, y) in enumerate(rows):
         print(f"row: {i}\tx: {x}, y: {y}")
 
+    conn.commit()  # commit before repl.
     from ptpython.repl import embed
-    embed(globals(), locals())
 
+    embed(globals(), locals())
