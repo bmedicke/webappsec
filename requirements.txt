@@ -7,6 +7,7 @@ clickclick==20.10.2
 connexion==2.9.0
 fastapi==0.70.0
 Flask==1.1.4
+greenlet==1.1.2
 idna==3.3
 inflection==0.5.1
 isodate==0.6.0
@@ -16,12 +17,17 @@ jsonschema==3.2.0
 MarkupSafe==2.0.1
 openapi-schema-validator==0.1.5
 openapi-spec-validator==0.3.1
+psycopg==3.0.5
+psycopg-binary==3.0.5
+psycopg-pool==3.0.2
 pydantic==1.8.2
 pyrsistent==0.18.0
+python-dotenv==0.19.2
 PyYAML==5.4.1
 requests==2.26.0
 six==1.16.0
 sniffio==1.2.0
+SQLAlchemy==1.4.27
 starlette==0.16.0
 typing-extensions==4.0.1
 urllib3==1.26.7
