@@ -11,7 +11,7 @@ engine = create_engine(
 )
 # future enables SQLAlchemy 2.0 syntax,
 # echo passes all SQL queries to the python logger.
-# we'll use psycopg2 until 3 ist supported.
+# we'll use psycopg2 until 3 is supported.
 
 create_db = """
 DROP TABLE IF EXISTS test;
