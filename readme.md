@@ -69,6 +69,7 @@ flask run # see .flaskenv for envvars.
 ```
 
 **database schema**
+
 ![image](https://user-images.githubusercontent.com/173962/145773177-4b7a9803-14c7-43c1-ad70-7c5093fe7a5c.png)
 
 * [flask (localhost:7701)](http://localhost:7701)
