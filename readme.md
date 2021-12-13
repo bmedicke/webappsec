@@ -15,6 +15,7 @@
 
 * [local setup](#local-setup)
 * [Flask](#flask)
+* [resources](#resources)
 * [FastAPI](#fastapi)
 * [Connexion](#connexion)
 
@@ -76,8 +77,7 @@ must be `escape()`d to prevent injections*
     * unsafe: `http://localhost:7701/i/<body onload='alert("this is bad");'>`
     * safe: `http://localhost:7701/u/<body onload='alert("this is bad");'>`
     * Jinja templates do this automatically
-    
-    
+
 # resources
 
 * https://github.blog/2021-12-06-write-more-secure-code-owasp-top-10-proactive-controls/
