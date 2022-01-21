@@ -5,7 +5,7 @@ import sqlite3
 
 def init_app(app):
     '''
-    TODO
+    registers function with the flask app factory
     '''
     # disconnect from db on exit:
     app.teardown_appcontext(close_db)
@@ -15,7 +15,7 @@ def init_app(app):
 
 def init_db():
     '''
-    applies the schema to setup the db
+    applies the schema to (re)create the database
     '''
     db = get_db()
 
@@ -27,7 +27,7 @@ def init_db():
 @with_appcontext
 def init_db_cli():
     '''
-    recreate database tables
+    recreate database tables (all data is lost)
 
     called via: flask init-db
     '''
