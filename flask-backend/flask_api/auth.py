@@ -54,3 +54,31 @@ def register():
             flash(error)
 
     return render_template("auth/register.html")
+
+
+@blueprint.route("/login", methods=("GET", "POST"))
+def login():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        db = get_db()
+        error = None
+        user = db.execute(
+            "SELECT * FROM user WHERE username = ?", (username,)
+        ).fetchone()
+
+        # TODO: don't leak info!
+        if user is None:
+            error = "invalid credentials (user)"
+        elif not check_password_hash(user["password"], password):
+            error = "invalid credentials (pass)"
+
+        if error is None:
+            session.clear()  # clear session dict.
+            # flask signs the cookie data!
+            session["user_id"] = user["id"]
+            return redirect(url_for("index"))
+
+        flash(error)
+
+    return render_template("auth/login.html")
