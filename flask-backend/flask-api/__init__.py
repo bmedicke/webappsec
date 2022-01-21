@@ -64,6 +64,7 @@ def create_app(test_config=None):
 
     # register database functions with the app:
     from . import database
+
     database.init_app(app)
 
     return app

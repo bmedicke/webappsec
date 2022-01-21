@@ -3,10 +3,11 @@ from flask.cli import with_appcontext
 import click
 import sqlite3
 
+
 def init_app(app):
-    '''
+    """
     registers function with the flask app factory
-    '''
+    """
     # disconnect from db on exit:
     app.teardown_appcontext(close_db)
     # add click cli command to flask command:
@@ -14,25 +15,25 @@ def init_app(app):
 
 
 def init_db():
-    '''
+    """
     applies the schema to (re)create the database
-    '''
+    """
     db = get_db()
 
-    with current_app.open_resource('schema.sql') as schema:
-        db.executescript(schema.read().decode('utf8'))
+    with current_app.open_resource("schema.sql") as schema:
+        db.executescript(schema.read().decode("utf8"))
 
 
-@click.command('init-db')
+@click.command("init-db")
 @with_appcontext
 def init_db_cli():
-    '''
+    """
     recreate database tables (all data is lost)
-    '''
+    """
     # called via: flask init-db
 
     init_db()
-    click.echo('database initialized')
+    click.echo("database initialized")
 
 
 def get_db():
