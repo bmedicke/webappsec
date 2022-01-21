@@ -6,6 +6,8 @@
 
 {% block content %}
 
-hello
+{% if g.user %}
+    <a href="/profile">my profile</a>
+{% endif %}
 
 {% endblock %}

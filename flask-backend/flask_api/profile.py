@@ -12,3 +12,8 @@ def index():
     landing page
     """
     return render_template("index.html")
+
+@blueprint.route('/profile')
+@login_required
+def profile():
+    return render_template("profile.html")
