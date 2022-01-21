@@ -5,7 +5,8 @@ CREATE TABLE user (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   username TEXT UNIQUE NOT NULL,
   password TEXT UNIQUE NOT NULL,
-  avatar TEXT
+  avatar TEXT,
+  private INTEGER NOT NULL DEFAULT 1
 );
 
 CREATE TABLE post (

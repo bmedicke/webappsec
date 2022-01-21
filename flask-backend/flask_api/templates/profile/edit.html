@@ -9,6 +9,9 @@
 <form method="post" accept-charset="utf-8">
     <label for="avatar">avatar</label>
     <input type="text" name="avatar" id="avatar" value="{{ g.user.avatar }}" placeholder="avatar" required>
+    <label for="private">private profile</label>
+    <input type="checkbox" name="private" id="private" {{ "checked" if g.user.private == 1 }}>
+
     <input type="submit" value="save" />
 </form>
 

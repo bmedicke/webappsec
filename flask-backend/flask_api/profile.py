@@ -34,11 +34,12 @@ def edit():
         return render_template("profile/edit.html")
     elif request.method == "POST":
         avatar = request.form["avatar"]
+        private = bool(request.form.get('private'))
 
         db = get_db()
         # TODO: error handling!
         # TODO: sanitzie avatar!
         # TODO: add exception handling!
-        db.execute("UPDATE user SET avatar = ? WHERE id = ?", (avatar, g.user["id"]))
+        db.execute("UPDATE user SET avatar = ?, private = ? WHERE id = ?", (avatar, private, g.user["id"]))
         db.commit()
         return redirect(url_for("profile.profile"))
