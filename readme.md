@@ -76,6 +76,7 @@ other interesting libs:
 ```sh
 cd flask-backend
 flask init-db # apply db schema.
+sqlitebrowser instance/flask-api.sqlite
 flask run # see .flaskenv for envvars.
 ```
 
