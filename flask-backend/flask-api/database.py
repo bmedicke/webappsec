@@ -28,9 +28,9 @@ def init_db():
 def init_db_cli():
     '''
     recreate database tables (all data is lost)
-
-    called via: flask init-db
     '''
+    # called via: flask init-db
+
     init_db()
     click.echo('database initialized')
 
