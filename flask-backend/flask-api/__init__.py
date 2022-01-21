@@ -24,7 +24,7 @@ def create_app(test_config=None):
         # load test config:
         app.config.from_mapping(test_config)
 
-    # create isntance folder for the sqlite db (if it's not already existing):
+    # create instance folder for the sqlite db (if it's not already existing):
     try:
         os.makedirs(app.instance_path)
     except OSError:
