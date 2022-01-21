@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-from flask import Flask, escape
+from flask import Flask, escape, render_template
 import os
 
 
@@ -35,7 +35,7 @@ def create_app(test_config=None):
         """
         landing page
         """
-        return "<p>hello, world!</p>"
+        return render_template('index.html')
 
     # @app.route("/u/<user_id>")
     # def user_profile(user_id):
