@@ -60,6 +60,9 @@ def register():
 
 @blueprint.route("/login", methods=("GET", "POST"))
 def login():
+    """
+    login site
+    """
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
@@ -106,6 +109,9 @@ def load_logged_in_user():
 
 @blueprint.route("/logout")
 def logout():
+    """
+    destroys the current session and return user to index
+    """
     session.clear()
     return redirect(url_for("index"))
 

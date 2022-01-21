@@ -17,12 +17,18 @@ def index():
 @blueprint.route("/profile")
 @login_required
 def profile():
+    """
+    displays (logged in) user profile
+    """
     return render_template("profile/show.html")
 
 
 @blueprint.route("/edit", methods=("GET", "POST"))
 @login_required
 def edit():
+    """
+    allows logged in users to edit their profile
+    """
     if request.method == "GET":
         return render_template("profile/edit.html")
     elif request.method == "POST":
