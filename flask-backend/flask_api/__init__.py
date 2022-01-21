@@ -30,12 +30,12 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    @app.route("/")
-    def index():
-        """
-        landing page
-        """
-        return render_template('index.html')
+    # @app.route("/")
+    # def index():
+    #     """
+    #     landing page
+    #     """
+    #     return render_template('index.html')
 
     # @app.route("/u/<user_id>")
     # def user_profile(user_id):
@@ -71,5 +71,9 @@ def create_app(test_config=None):
     from . import auth
 
     app.register_blueprint(auth.blueprint)
+
+    from . import profile
+    app.register_blueprint(profile.blueprint)
+    app.add_url_rule('/', endpoint='index')
 
     return app
