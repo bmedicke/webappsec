@@ -6,7 +6,8 @@ import os
 def create_app(test_config=None):
     '''
     application factory function for the Flask app.
-    return a Flask object
+
+    returns a Flask object
     '''
     # create a flask instance with config files relative to this file:
     # SECRET_KEY should be overwritten with a random value when deploying!
