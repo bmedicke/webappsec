@@ -61,6 +61,8 @@ docker-compose up -d # start db and adminer.
     * bcrypt
         * salt and hashing
             * *security note: bcrypt truncates passwords to 72 bytes*
+    * click
+        * command line parsing
 
 ---
 
