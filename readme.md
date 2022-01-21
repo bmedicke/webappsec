@@ -84,6 +84,11 @@ must be `escape()`d to prevent injections*
 * thread local objects (for thread safety) and notes about security
     * flask protects against XSS. (via flask itself and jinja2)
         * https://flask.palletsprojects.com/en/1.0.x/advanced_foreword/
+* **security note**: use type hinting
+
+---
+
+* the `flask-api` directory contains a python package (`__init__.py`) for the app with the application factory (`create_app()`)
 
 # resources
 
