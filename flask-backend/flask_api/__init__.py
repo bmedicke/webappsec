@@ -30,13 +30,6 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # @app.route("/")
-    # def index():
-    #     """
-    #     landing page
-    #     """
-    #     return render_template('index.html')
-
     # @app.route("/u/<user_id>")
     # def user_profile(user_id):
     #     """
