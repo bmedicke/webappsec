@@ -7,14 +7,17 @@
   </head>
   <body>
     {% block header %}{% endblock %}
+
     {% if g.user %}
       <span>logged in as {{ g.user['username'] }}
         <a href="{{ url_for('auth.logout') }}">logout</a>
       </span>
     {% endif %}
+
     {% for message in get_flashed_messages() %}
       <div class='flash'>{{ message }}</div>
     {% endfor %}
+
     <div class='content'>
       {% block content %}{% endblock %}
     </div>
