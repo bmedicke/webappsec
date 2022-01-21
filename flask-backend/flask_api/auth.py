@@ -37,6 +37,8 @@ def register():
         if not password:
             error = "Password can not be empty"
 
+        # TODO: add minimum password length.
+
         if error is None:
             try:
                 db.execute(
