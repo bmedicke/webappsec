@@ -7,8 +7,8 @@
 {% block content %}
 
 <ul>
-    <li> {{ g.user.avatar }} </li>
-    <li> {{ g.user.private }} </li>
+    <li> avatar: {{ g.user.avatar }} </li>
+    <li> {{ "private" if g.user.private else "public"}} profile </li>
 </ul>
 
 <a href="/edit">edit profile</a>
