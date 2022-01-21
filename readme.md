@@ -81,6 +81,9 @@ must be `escape()`d to prevent injections*
     * unsafe: `http://localhost:7701/i/<body onload='alert("this is bad");'>`
     * safe: `http://localhost:7701/u/<body onload='alert("this is bad");'>`
     * Jinja templates do this automatically
+* thread local objects (for thread safety) and notes about security
+    * flask protects against XSS. (via flask itself and jinja2)
+        * https://flask.palletsprojects.com/en/1.0.x/advanced_foreword/
 
 # resources
 
