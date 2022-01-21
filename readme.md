@@ -97,6 +97,7 @@ must be `escape()`d to prevent injections*
 ---
 
 * start out with `sqlite`, maybe switch to postgres later
+    * sqlite is purely concurrent and might be too slow for larger apps
 * the `flask-api` directory contains a python package (`__init__.py`) for the app with the application factory (`create_app()`)
 
 # resources
