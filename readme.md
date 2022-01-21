@@ -13,6 +13,7 @@
 
 <!-- vim-markdown-toc GFM -->
 
+* [TODO](#todo)
 * [local setup](#local-setup)
 * [Flask](#flask)
 * [resources](#resources)
@@ -20,6 +21,13 @@
 * [Connexion](#connexion)
 
 <!-- vim-markdown-toc -->
+
+# TODO
+
+* user registration
+* authentication
+* JWT
+* two-factor login
 
 # local setup
 
