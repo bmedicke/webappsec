@@ -1,4 +1,4 @@
-from flask import Blueprint, flash, g, render_template, request, url_for
+from flask import Blueprint, flash, g, render_template, request, url_for, redirect
 from flask_api.auth import login_required
 from flask_api.database import get_db
 from werkzeug.exceptions import abort
@@ -16,4 +16,21 @@ def index():
 @blueprint.route('/profile')
 @login_required
 def profile():
-    return render_template("profile.html")
+    return render_template("profile/show.html")
+
+@blueprint.route('/edit', methods=('GET', 'POST'))
+@login_required
+def edit():
+    if request.method == 'GET':
+        return render_template("profile/edit.html")
+    elif request.method == 'POST':
+        avatar = request.form['avatar']
+
+        db = get_db()
+        # TODO: error handling!
+        # TODO: sanitzie avatar!
+        db.execute(
+                "UPDATE user SET avatar = ? WHERE id = ?",
+                (avatar, g.user['id']))
+        db.commit()
+        return redirect(url_for('profile.profile'))
