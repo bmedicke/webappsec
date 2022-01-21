@@ -73,7 +73,8 @@ def create_app(test_config=None):
     app.register_blueprint(auth.blueprint)
 
     from . import profile
+
     app.register_blueprint(profile.blueprint)
-    app.add_url_rule('/', endpoint='index')
+    app.add_url_rule("/", endpoint="index")
 
     return app
