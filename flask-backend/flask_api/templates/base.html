@@ -12,6 +12,9 @@
       <span>logged in as {{ g.user['username'] }}
         <a href="{{ url_for('auth.logout') }}">logout</a>
       </span>
+    {% else %}
+      <span><a href="{{ url_for('auth.register') }}">register</a></span>
+      <span><a href="{{ url_for('auth.login') }}">login</a></span>
     {% endif %}
 
     {% for message in get_flashed_messages() %}
