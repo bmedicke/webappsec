@@ -38,6 +38,7 @@ def edit():
         db = get_db()
         # TODO: error handling!
         # TODO: sanitzie avatar!
+        # TODO: add exception handling!
         db.execute("UPDATE user SET avatar = ? WHERE id = ?", (avatar, g.user["id"]))
         db.commit()
         return redirect(url_for("profile.profile"))
