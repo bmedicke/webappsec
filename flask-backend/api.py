@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 from flask import Flask, escape
 
+# flask instance
 app = Flask(__name__)
 
 
