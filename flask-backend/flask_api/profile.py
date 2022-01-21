@@ -10,6 +10,7 @@ blueprint = Blueprint("profile", __name__)
 def index():
     """
     landing page
+    TODO: add list of profiles
     """
     return render_template("index.html")
 
