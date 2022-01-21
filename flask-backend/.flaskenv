@@ -1,4 +1,4 @@
-FLASK_APP=flask-api
+FLASK_APP=flask_api
 FLASK_ENV=development
 FLASK_RUN_PORT=7701
 FLASK_RUN_HOST=0.0.0.0
