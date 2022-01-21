@@ -5,6 +5,8 @@ from werkzeug.exceptions import abort
 
 blueprint = Blueprint("profile", __name__)
 
+# TODO: delte profile
+# TODO: change password
 
 @blueprint.route("/")
 def index():
