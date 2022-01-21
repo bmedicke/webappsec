@@ -3,6 +3,26 @@ from flask.cli import with_appcontext
 import click
 import sqlite3
 
+def init_app(app):
+    '''
+    TODO
+    '''
+    # disconnect from db on exit:
+    app.teardown_appcontext(close_db)
+    # add click cli command to flask command:
+    app.cli.add_command(init_db_cli)
+
+
+def init_db():
+    '''
+    applies the schema to setup the db
+    '''
+    db = get_db()
+
+    with current_app.open_resource('schema.sql') as schema:
+        db.executescript(schema.read().decode('utf8'))
+
+
 
 def get_db():
     """
