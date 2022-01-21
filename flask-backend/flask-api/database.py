@@ -50,7 +50,7 @@ def get_db():
         )
         g.db.row_factory = sqlite3.Row  # rows can be accessed like dicts.
 
-        return g.db
+    return g.db
 
 
 def close_db(e=None):
