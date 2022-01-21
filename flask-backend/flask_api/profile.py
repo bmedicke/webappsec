@@ -5,7 +5,7 @@ from werkzeug.exceptions import abort
 
 blueprint = Blueprint("profile", __name__)
 
-# TODO: delte profile
+# TODO: delete profile
 # TODO: change password
 
 @blueprint.route("/")
