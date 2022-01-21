@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body>
+    {% block header %}{% endblock %}
+    {% if g.user %}
+      <span>logged in as {{ g.user['username'] }}</span>
+    {% endif %}
+    {% for message in get_flashed_messages() %}
+      <div class='flash'>{{ message }}</div>
+    {% endfor %}
+    <div class='content'>
+      {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>
