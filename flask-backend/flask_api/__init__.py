@@ -72,6 +72,7 @@ def create_app(test_config=None):
 
     app.register_blueprint(auth.blueprint)
 
+    # register profile blueprint (including index endpoint):
     from . import profile
 
     app.register_blueprint(profile.blueprint)
