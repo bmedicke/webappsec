@@ -11,6 +11,9 @@
     <li> your profile is currently {{ "private" if g.user.private else "public"}} </li>
 </ul>
 
-<a href="/profile/edit">edit profile</a>
+<ul>
+    <li><a href="/profile/edit">edit profile</a></li>
+    <li><a href="/">messages</a></li>
+</ul>
 
 {% endblock %}
