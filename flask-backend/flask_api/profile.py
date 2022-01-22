@@ -15,7 +15,6 @@ blueprint = Blueprint("profile", __name__)
 
 # TODO: delete profile
 # TODO: change password
-# TODO: avatar as blob
 
 
 @blueprint.route("/profile")
