@@ -97,6 +97,7 @@ must be `escape()`d to prevent injections*
     * flask protects against XSS. (via flask itself and jinja2)
         * https://flask.palletsprojects.com/en/1.0.x/advanced_foreword/
 * **security note**: use type hinting
+* try injections: https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/SQLite%20Injection.md
 
 ---
 
