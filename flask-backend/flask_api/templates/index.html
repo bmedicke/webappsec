@@ -17,8 +17,8 @@
 {% for message in messages %}
     <li>
         <i>{{ message.created }} |
+            <img src="{{ message.avatar }}" alt="avatar"/> |
             <a href="/user/{{ message.author_id }}" >{{ message.username }}</a> |
-           {{ message.avatar }} |
         </i>
         {{ message.text }}
     </li>
