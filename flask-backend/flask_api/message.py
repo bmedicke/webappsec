@@ -18,9 +18,18 @@ blueprint = Blueprint("message", __name__)
 def index():
     """
     landing page
-    TODO: add list of profiles
     """
-    return render_template("index.html")
+    db = get_db()
+    messages = db.execute(
+        """
+        SELECT created, username, avatar, text
+        FROM message
+        JOIN user
+        ON message.author_id = user.id
+        """
+    ).fetchall()
+
+    return render_template("index.html", messages=messages)
 
 
 @blueprint.route("/create", methods=("GET", "POST"))
@@ -44,6 +53,6 @@ def create():
                 (author, text),
             )
             db.commit()
-            return redirect(url_for("message.create"))
+            return redirect(url_for("index"))
 
     return render_template("message/create.html")

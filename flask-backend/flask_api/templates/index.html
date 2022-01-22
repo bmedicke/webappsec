@@ -13,4 +13,18 @@
 </ul>
 {% endif %}
 
+{{ messages[0].keys() }}
+
+<ul>
+{% for message in messages %}
+    <li>
+        <i>{{ message.created }} |
+           {{ message.username }} |
+           {{ message.avatar }} |
+        </i>
+        {{ message.text }}
+    </li>
+{% endfor %}
+</ul>
+
 {% endblock %}
