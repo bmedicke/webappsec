@@ -22,7 +22,7 @@ def index():
     db = get_db()
     messages = db.execute(
         """
-        SELECT created, username, avatar, text
+        SELECT author_id, created, username, avatar, text
         FROM message
         JOIN user
         ON message.author_id = user.id
