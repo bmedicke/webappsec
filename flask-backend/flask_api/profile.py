@@ -57,7 +57,8 @@ def edit():
             """
             UPDATE user
             SET avatar = ?, private = ?, about = ?
-            WHERE id = ?""",
+            WHERE id = ?
+            """,
             (avatar, private, about, g.user["id"]),
         )
         db.commit()
