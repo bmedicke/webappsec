@@ -27,7 +27,7 @@ def profile():
     return render_template("profile/show.html")
 
 
-@blueprint.route("/edit", methods=("GET", "POST"))
+@blueprint.route("/profile/edit", methods=("GET", "POST"))
 @login_required
 def edit():
     """
