@@ -15,15 +15,18 @@ blueprint = Blueprint("message", __name__)
 
 
 def message_post():
-    text = request.form["text"]
-    author = g.user["id"]
     error = None
 
+    if g.user is None:
+        error = "log in first"
+
+    text = request.form["text"]
     if not text:
         error = "empty message"
 
     if error is not None:
         flash(error)
+        return redirect(url_for("index"))
 
     else:
         db = get_db()
@@ -32,7 +35,7 @@ def message_post():
             INSERT INTO message (author_id, text)
             VALUES (?, ?)
             """,
-            (author, text),
+            (g.user["id"], text),
         )
         db.commit()
         return redirect(url_for("index"))
