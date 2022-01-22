@@ -83,11 +83,10 @@ def login():
             (username,),
         ).fetchone()
 
-        # TODO: don't leak info!
         if user is None:
-            error = "invalid credentials (user)"
+            error = "invalid credentials"
         elif not check_password_hash(user["password"], password):
-            error = "invalid credentials (pass)"
+            error = "invalid credentials"
 
         if error is None:
             session.clear()  # clear session dict.
