@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 
 {% block header %}
-<h1>{% block title %} {{ g.user['username'] }}'s profile{% endblock %}</h1>
+<h1>{% block title %}your profile{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
 
 <ul>
+    <li> user: {{ g.user['username'] }} </li>
     <li> avatar: {{ g.user.avatar }} </li>
     <li> your profile is currently {{ "private" if g.user.private else "public"}} </li>
 </ul>
