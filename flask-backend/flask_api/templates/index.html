@@ -21,8 +21,10 @@
 
 <form method="post" accept-charset="utf-8">
     <input type="text" name="text"
-    id="text" value="" placeholder="message text"
-    class="chatbar" required>
+        id="text" value="" placeholder="{{ "write your message here"
+                           if g.user else "log in to start chatting" }}"
+        class="chatbar" required
+        {{ "disabled" if not g.user }}>
 </form>
 
 {% endblock %}
