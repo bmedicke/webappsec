@@ -28,6 +28,18 @@ def profile():
     return render_template("profile/show.html")
 
 
+def get_profile_pics():
+    cwd = os.path.join(os.getcwd() + "/flask_api")
+    rel_path = url_for("static", filename="profiles")
+    files = glob(os.path.join(cwd + rel_path + "/*.png"))
+    profile_pics = list()
+
+    for file in files:
+        profile_pics.append(os.path.basename(file.strip(".png")))
+
+    return profile_pics
+
+
 @blueprint.route("/profile/edit", methods=("GET", "POST"))
 @login_required
 def edit():
@@ -35,15 +47,9 @@ def edit():
     allows logged in users to edit their profile
     """
     if request.method == "GET":
-        cwd = os.path.join(os.getcwd() + "/flask_api")
-        relpath = url_for("static", filename="profiles")
-        files = glob(os.path.join(cwd + relpath + "/*.png"))
-        profile_pics = list()
-
-        for file in files:
-            profile_pics.append(os.path.basename(file.strip(".png")))
-
-        return render_template("profile/edit.html", profile_pics=profile_pics)
+        return render_template(
+            "profile/edit.html", profile_pics=get_profile_pics()
+        )
 
     elif request.method == "POST":
         avatar = request.form["avatar"]
