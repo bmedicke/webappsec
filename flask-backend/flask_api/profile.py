@@ -18,15 +18,6 @@ blueprint = Blueprint("profile", __name__)
 # TODO: avatar as blob
 
 
-@blueprint.route("/")
-def index():
-    """
-    landing page
-    TODO: add list of profiles
-    """
-    return render_template("index.html")
-
-
 @blueprint.route("/profile")
 @login_required
 def profile():

@@ -40,10 +40,15 @@ def create_app(test_config=None):
 
     app.register_blueprint(auth.blueprint)
 
-    # register profile blueprint (including index endpoint):
+    # register profile blueprint:
     from . import profile
 
     app.register_blueprint(profile.blueprint)
+
+    # register message blueprint (including index endpoint):
+    from . import message
+
+    app.register_blueprint(message.blueprint)
     app.add_url_rule("/", endpoint="index")
 
     return app
