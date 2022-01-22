@@ -16,6 +16,25 @@ import functools
 blueprint = Blueprint("auth", __name__, url_prefix="/auth")
 
 
+def validate_credentials(username, password, password_confirmation):
+    PASSWORD_MIN_LEN = 12
+    error = None
+
+    if not username:
+        error = "username can not be empty"
+
+    if not password:
+        error = "password can not be empty"
+
+    if len(password) < PASSWORD_MIN_LEN:
+        error = f"password too short ({PASSWORD_MIN_LEN} chars minimum)"
+
+    if password != password_confirmation:
+        error = "passwords do not match"
+
+    return error
+
+
 # handle /auth/register:
 @blueprint.route("/register", methods=("GET", "POST"))
 def register():
@@ -25,24 +44,11 @@ def register():
     returns html
     """
     if request.method == "POST":
-        error = None
-        PASSWORD_MIN_LEN = 12
-
         username = request.form["username"]
         password = request.form["password"]
         password_confirmation = request.form["password_confirmation"]
 
-        if not username:
-            error = "username can not be empty"
-
-        if not password:
-            error = "password can not be empty"
-
-        if len(password) < PASSWORD_MIN_LEN:
-            error = f"password too short ({PASSWORD_MIN_LEN} chars minimum)"
-
-        if password != password_confirmation:
-            error = "passwords do not match"
+        error = validate_credentials(username, password, password_confirmation)
 
         if error is None:
             try:
