@@ -14,15 +14,9 @@
 
 {% if user.private == 0 %}
 
-<ul>
-    <li> user: {{ user.username }} </li>
-    <li>
-    profile pic:
-    <img src="{{ url_for('static', filename='profiles/'+user.avatar+'.png') }}"
-     class="avatar" alt="avatar"/>
-    </li>
-    <li>about: {{ user.about }}</li>
-</ul>
+<img src="{{ url_for('static', filename='profiles/'+user.avatar+'.png') }}"
+class="avatar" alt="avatar"/>
+<div>{{ user.about }}</div>
 
 {% endif %}
 
