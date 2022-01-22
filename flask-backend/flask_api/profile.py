@@ -52,22 +52,30 @@ def edit():
         )
 
     elif request.method == "POST":
-        avatar = request.form["avatar"]
+        error = None
+
         about = request.form["about"]
         private = bool(request.form.get("private"))
+        avatar = request.form["avatar"]
 
-        db = get_db()
-        # TODO: error handling!
-        # TODO: add exception handling!
-        db.execute(
-            """
-            UPDATE user
-            SET avatar = ?, private = ?, about = ?
-            WHERE id = ?
-            """,
-            (avatar, private, about, g.user["id"]),
-        )
-        db.commit()
+        if avatar not in get_profile_pics():
+            error = "invalid profile picture choice"
+
+        if error is not None:
+            flash(error)
+
+        else:
+            db = get_db()
+            db.execute(
+                """
+                UPDATE user
+                SET avatar = ?, private = ?, about = ?
+                WHERE id = ?
+                """,
+                (avatar, private, about, g.user["id"]),
+            )
+            db.commit()
+
         return redirect(url_for("profile.profile"))
 
 
