@@ -52,8 +52,6 @@ def edit():
 
         db = get_db()
         # TODO: error handling!
-        # TODO: sanitzie avatar!
-        # TODO: chose avatar from list?
         # TODO: add exception handling!
         db.execute(
             """
