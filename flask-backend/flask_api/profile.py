@@ -45,7 +45,10 @@ def edit():
         # TODO: chose avatar from list?
         # TODO: add exception handling!
         db.execute(
-            "UPDATE user SET avatar = ?, private = ?, about = ? WHERE id = ?",
+            """
+            UPDATE user
+            SET avatar = ?, private = ?, about = ?
+            WHERE id = ?""",
             (avatar, private, about, g.user["id"]),
         )
         db.commit()
@@ -57,10 +60,10 @@ def user(id):
     db = get_db()
     user = db.execute(
         """
-            SELECT username, private, avatar, about
-            FROM user
-            WHERE id = ?
-            """,
+        SELECT username, private, avatar, about
+        FROM user
+        WHERE id = ?
+        """,
         (id,),
     ).fetchone()
 
