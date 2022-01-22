@@ -9,7 +9,9 @@ from flask import (
 )
 from flask_api.auth import login_required
 from flask_api.database import get_db
+from glob import glob
 from werkzeug.exceptions import abort
+import os
 
 blueprint = Blueprint("profile", __name__)
 
@@ -33,7 +35,16 @@ def edit():
     allows logged in users to edit their profile
     """
     if request.method == "GET":
-        return render_template("profile/edit.html")
+        cwd = os.path.join(os.getcwd() + "/flask_api")
+        relpath = url_for("static", filename="profiles")
+        files = glob(os.path.join(cwd + relpath + "/*.png"))
+        profile_pics = list()
+
+        for file in files:
+            profile_pics.append(os.path.basename(file.strip(".png")))
+
+        return render_template("profile/edit.html", profile_pics=profile_pics)
+
     elif request.method == "POST":
         avatar = request.form["avatar"]
         about = request.form["about"]

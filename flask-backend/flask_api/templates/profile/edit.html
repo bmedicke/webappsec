@@ -13,7 +13,15 @@
     </div>
     <div class="form-group">
         <label for="avatar">profile pic</label>
-        <input type="text" name="avatar" id="avatar" value="{{ g.user.avatar }}" required>
+
+{% for pic in profile_pics %}
+        <input type="radio" name="avatar" id="avatar" value="{{ pic }}"
+        {{ "checked" if pic == g.user.avatar }}
+        required>
+        <img src="{{ url_for('static', filename='profiles/'+pic+'.png') }}" />
+{% endfor %}
+
+
     </div>
     <div class="form-group">
         <label for="private">private profile</label>
