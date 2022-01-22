@@ -15,8 +15,8 @@ import os
 
 blueprint = Blueprint("profile", __name__)
 
-# TODO: delete profile
-# TODO: change password
+# TODO: allow user to delete the profile
+# TODO: allow user to change the password
 
 
 @blueprint.route("/profile")
