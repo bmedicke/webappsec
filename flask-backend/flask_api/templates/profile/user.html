@@ -10,7 +10,9 @@
 
 <ul>
     <li> {{ user.username }} </li>
-    <li> <img src="{{ g.user.avatar }}" alt="avatar"/> </li>
+    <li>
+    <img src="{{ url_for('static', filename=user.avatar+'.png') }}" alt="avatar"/>
+    </li>
 </ul>
 
 {% else %}
