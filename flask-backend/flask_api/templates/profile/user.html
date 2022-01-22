@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 
 {% block header %}
-<h1>{% block title %}profile{% endblock %}</h1>
+<h1>{% block title %}
+        {% if user.private == 0 %}
+            {{ user.username }}'s profile
+        {% else %}
+            private profile
+        {% endif %}
+    {% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
@@ -15,14 +21,6 @@
     <img src="{{ url_for('static', filename='profiles/'+user.avatar+'.png') }}" alt="avatar"/>
     </li>
     <li>about: {{ user.about }}</li>
-</ul>
-
-{% else %}
-
-<ul>
-    <li>
-        private profile
-    </li>
 </ul>
 
 {% endif %}
