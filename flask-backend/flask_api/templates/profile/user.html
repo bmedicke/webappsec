@@ -6,7 +6,7 @@
 
 {% block content %}
 
-{% if not user.private %}
+{% if user.private == 0 %}
 
 <ul>
     <li> {{ user.username }} </li>
