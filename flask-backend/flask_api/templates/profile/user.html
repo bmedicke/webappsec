@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}profile{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+{% if not user.private %}
+
+{{ user.keys() }}
+
+<ul>
+    <li> {{ user.username }} </li>
+    <li> {{ user.avatar }}</li>
+</ul>
+
+{% else %}
+
+<ul>
+    <li>
+        private profile
+    </li>
+</ul>
+
+{% endif %}
+
+<ul>
+    <li><a href="/">messages</a></li>
+</ul>
+
+{% endblock %}

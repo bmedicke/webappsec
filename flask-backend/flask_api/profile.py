@@ -50,3 +50,18 @@ def edit():
         )
         db.commit()
         return redirect(url_for("profile.profile"))
+
+
+@blueprint.route("/user/<int:id>")
+def user(id):
+    db = get_db()
+    user = db.execute(
+        """
+            SELECT username, private, avatar
+            FROM user
+            WHERE id = ?
+            """,
+        (id,),
+    ).fetchone()
+
+    return render_template("/profile/user.html", user=user)
