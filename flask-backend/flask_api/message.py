@@ -26,6 +26,7 @@ def index():
         FROM message
         JOIN user
         ON message.author_id = user.id
+        ORDER BY created ASC
         """
     ).fetchall()
 
