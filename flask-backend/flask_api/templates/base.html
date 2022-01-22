@@ -7,34 +7,35 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css" media="all">
   </head>
   <body>
-    {% block header %}{% endblock %}
 
     {% if g.user %}
-    <nav>
-    <ul>
-        <li>
-          logged in as {{ g.user['username'] }} <a href="{{ url_for('auth.logout') }}">logout</a>
-        </li>
-        <li>
-           <a href="{{ url_for('index') }}">messages</a>
-        </li>
-        <li>
-           <a href="{{ url_for('profile.profile')}}" >my profile</a>
-        </li>
-    </ul>
-    </nav>
-    {% else %}
-    <nav>
-    <ul>
-        <li>
-          <a href="{{ url_for('auth.register') }}">register</a>
-        </li>
-        <li>
-          <a href="{{ url_for('auth.login') }}">login</a>
-        </li>
-    </ul>
-    </nav>
+        <nav>
+        <ul>
+            <li>
+              logged in as {{ g.user['username'] }} <a href="{{ url_for('auth.logout') }}">logout</a>
+            </li>
+            <li>
+               <a href="{{ url_for('index') }}">messages</a>
+            </li>
+            <li>
+               <a href="{{ url_for('profile.profile')}}" >my profile</a>
+            </li>
+        </ul>
+        </nav>
+        {% else %}
+        <nav>
+        <ul>
+            <li>
+              <a href="{{ url_for('auth.register') }}">register</a>
+            </li>
+            <li>
+              <a href="{{ url_for('auth.login') }}">login</a>
+            </li>
+        </ul>
+        </nav>
     {% endif %}
+
+    {% block header %}{% endblock %}
 
     {% for message in get_flashed_messages() %}
       <div class='flash'>{{ message }}</div>
