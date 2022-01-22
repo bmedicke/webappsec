@@ -22,4 +22,3 @@
 #     localhost:7701/i/<body onload='alert("this is bad");'>
 #     """
 #     return f"{unescaped}"
-
