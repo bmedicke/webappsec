@@ -18,7 +18,8 @@
     <li> user: {{ user.username }} </li>
     <li>
     profile pic:
-    <img src="{{ url_for('static', filename='profiles/'+user.avatar+'.png') }}" alt="avatar"/>
+    <img src="{{ url_for('static', filename='profiles/'+user.avatar+'.png') }}"
+     class="avatar" alt="avatar"/>
     </li>
     <li>about: {{ user.about }}</li>
 </ul>
