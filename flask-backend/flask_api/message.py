@@ -21,7 +21,7 @@ def message_post():
         error = "log in first"
 
     text = request.form["text"]
-    if not text:
+    if not text or text.isspace():
         error = "empty message"
 
     if error is not None:
