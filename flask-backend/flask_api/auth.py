@@ -42,7 +42,10 @@ def register():
         if error is None:
             try:
                 db.execute(
-                    "INSERT INTO user (username, password) VALUES (?, ?)",
+                    """
+                    INSERT INTO user (username, password)
+                    VALUES (?, ?)
+                    """,
                     (username, generate_password_hash(password)),
                 )
                 db.commit()  # write to db.
@@ -69,7 +72,12 @@ def login():
         db = get_db()
         error = None
         user = db.execute(
-            "SELECT * FROM user WHERE username = ?", (username,)
+            """
+            SELECT *
+            FROM user
+            WHERE username = ?
+            """,
+            (username,),
         ).fetchone()
 
         # TODO: don't leak info!
@@ -104,7 +112,14 @@ def load_logged_in_user():
     else:
         g.user = (
             get_db()
-            .execute("SELECT * FROM user WHERE id = ?", (user_id,))
+            .execute(
+                """
+                SELECT *
+                FROM user
+                WHERE id = ?
+                """,
+                (user_id,),
+            )
             .fetchone()
         )
 

@@ -50,7 +50,10 @@ def create():
         else:
             db = get_db()
             db.execute(
-                "INSERT INTO message (author_id, text)" "VALUES (?, ?)",
+                """
+                INSERT INTO message (author_id, text)
+                VALUES (?, ?)
+                """,
                 (author, text),
             )
             db.commit()
