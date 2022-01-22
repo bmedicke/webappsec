@@ -8,6 +8,10 @@
 
 <form method="post" accept-charset="utf-8">
     <div class="form-group">
+        <label for="about">about</label>
+        <textarea name="about" id="about">{{ g.user.about }}</textarea>
+    </div>
+    <div class="form-group">
         <label for="avatar">avatar</label>
         <input type="text" name="avatar" id="avatar" value="{{ g.user.avatar }}" placeholder="avatar" required>
     </div>

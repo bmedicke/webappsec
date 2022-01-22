@@ -9,6 +9,7 @@
 <ul>
     <li> user: {{ g.user['username'] }} </li>
     <li> profile pic: <img src="{{ url_for('static', filename='profiles/'+g.user.avatar+'.png') }}" alt="avatar"/></li>
+    <li> about: {{ g.user['about'] }}
     <li> your profile is currently {{ "private" if g.user.private else "public"}} </li>
 </ul>
 

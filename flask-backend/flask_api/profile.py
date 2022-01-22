@@ -37,6 +37,7 @@ def edit():
         return render_template("profile/edit.html")
     elif request.method == "POST":
         avatar = request.form["avatar"]
+        about = request.form["about"]
         private = bool(request.form.get("private"))
 
         db = get_db()
@@ -45,8 +46,8 @@ def edit():
         # TODO: chose avatar from list?
         # TODO: add exception handling!
         db.execute(
-            "UPDATE user SET avatar = ?, private = ? WHERE id = ?",
-            (avatar, private, g.user["id"]),
+            "UPDATE user SET avatar = ?, private = ?, about = ? WHERE id = ?",
+            (avatar, private, about, g.user["id"]),
         )
         db.commit()
         return redirect(url_for("profile.profile"))
@@ -57,7 +58,7 @@ def user(id):
     db = get_db()
     user = db.execute(
         """
-            SELECT username, private, avatar
+            SELECT username, private, avatar, about
             FROM user
             WHERE id = ?
             """,
