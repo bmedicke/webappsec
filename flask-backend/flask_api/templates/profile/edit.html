@@ -18,7 +18,8 @@
         <input type="radio" name="avatar" id="avatar" value="{{ pic }}"
         {{ "checked" if pic == g.user.avatar }}
         required>
-        <img src="{{ url_for('static', filename='profiles/'+pic+'.png') }}" />
+        <img src="{{ url_for('static', filename='profiles/'+pic+'.png') }}"
+         class="avatar" />
 {% endfor %}
 
 
