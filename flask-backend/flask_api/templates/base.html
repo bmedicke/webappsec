@@ -10,12 +10,30 @@
     {% block header %}{% endblock %}
 
     {% if g.user %}
-      <span>logged in as {{ g.user['username'] }}
-        (<a href="{{ url_for('auth.logout') }}">logout</a>)
-      </span>
+    <nav>
+    <ul>
+        <li>
+          logged in as {{ g.user['username'] }} <a href="{{ url_for('auth.logout') }}">logout</a>
+        </li>
+        <li>
+           <a href="{{ url_for('index') }}">messages</a>
+        </li>
+        <li>
+           <a href="{{ url_for('profile.profile')}}" >my profile</a>
+        </li>
+    </ul>
+    </nav>
     {% else %}
-      <span><a href="{{ url_for('auth.register') }}">register</a></span>,
-      <span><a href="{{ url_for('auth.login') }}">login</a></span>
+    <nav>
+    <ul>
+        <li>
+          <a href="{{ url_for('auth.register') }}">register</a>
+        </li>
+        <li>
+          <a href="{{ url_for('auth.login') }}">login</a>
+        </li>
+    </ul>
+    </nav>
     {% endif %}
 
     {% for message in get_flashed_messages() %}

@@ -6,13 +6,6 @@
 
 {% block content %}
 
-{% if g.user %}
-<ul>
-    <li><a href="/create">write message</a></li>
-    <li><a href="/profile">my profile</a></li>
-</ul>
-{% endif %}
-
 <ul>
 {% for message in messages %}
     <li>
