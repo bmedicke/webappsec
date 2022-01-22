@@ -6,7 +6,7 @@ CREATE TABLE user (
   username TEXT UNIQUE NOT NULL,
   password TEXT UNIQUE NOT NULL,
   avatar TEXT NOT NULL DEFAULT '0000',
-  about TEXT,
+  about TEXT DEFAULT '',
   private INTEGER NOT NULL DEFAULT 1
 );
 
