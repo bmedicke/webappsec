@@ -9,8 +9,9 @@
 {% if user.private == 0 %}
 
 <ul>
-    <li> {{ user.username }} </li>
+    <li> user: {{ user.username }} </li>
     <li>
+    profile pic:
     <img src="{{ url_for('static', filename='profiles/'+user.avatar+'.png') }}" alt="avatar"/>
     </li>
 </ul>
