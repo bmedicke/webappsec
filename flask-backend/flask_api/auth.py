@@ -25,22 +25,28 @@ def register():
     returns html
     """
     if request.method == "POST":
+        error = None
+        PASSWORD_MIN_LEN = 12
+
         username = request.form["username"]
         password = request.form["password"]
-
-        db = get_db()
-        error = None
+        password_confirmation = request.form["password_confirmation"]
 
         if not username:
-            error = "Username can not be empty"
+            error = "username can not be empty"
 
         if not password:
-            error = "Password can not be empty"
+            error = "password can not be empty"
 
-        # TODO: add minimum password length.
+        if len(password) < PASSWORD_MIN_LEN:
+            error = f"password too short ({PASSWORD_MIN_LEN} chars minimum)"
+
+        if password != password_confirmation:
+            error = "passwords do not match"
 
         if error is None:
             try:
+                db = get_db()
                 db.execute(
                     """
                     INSERT INTO user (username, password)
@@ -51,12 +57,9 @@ def register():
                 db.commit()  # write to db.
 
             except db.IntegrityError:
-                error = f"Username {username} already taken."
-            else:
-                # generate url to avoid hardcoding:
-                return redirect(url_for("auth.login"))
+                error = f"username {username} already taken."
 
-            flash(error)
+        flash(error or "account created")
 
     return render_template("auth/register.html")
 
