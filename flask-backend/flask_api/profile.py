@@ -11,7 +11,6 @@ from flask import (
 from flask_api.auth import login_required
 from flask_api.database import get_db
 from glob import glob
-from werkzeug.exceptions import abort
 import os
 
 blueprint = Blueprint("profile", __name__)
