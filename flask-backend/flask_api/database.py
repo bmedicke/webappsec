@@ -24,11 +24,11 @@ def init_db():
         db.executescript(schema.read().decode("utf8"))
 
 
-@click.command("init-db") # called via: flask init-db
+@click.command("init-db")  # called via: flask init-db
 @with_appcontext
 def init_db_cli():
     """
-    recreate database tables (all data is lost)
+    recreates database tables (all data is lost)
     """
 
     init_db()
