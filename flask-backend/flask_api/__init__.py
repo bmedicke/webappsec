@@ -50,8 +50,9 @@ def create_app(test_config=None):
     # register authentication blueprint (register/login/logout):
     app.register_blueprint(auth.blueprint)
 
-    # register profile blueprint (show/edit):
+    # register profile blueprint (show/edit) and a jinja function:
     app.register_blueprint(profile.blueprint)
+    app.jinja_env.globals["profile_pic"] = profile.profile_pic
 
     # register message blueprint (create, including index endpoint):
     app.register_blueprint(message.blueprint)

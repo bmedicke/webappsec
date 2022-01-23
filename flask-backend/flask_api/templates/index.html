@@ -11,7 +11,7 @@
     <li>
         <i>{{ message.created }} |
             <a href="/user/{{ message.author_id }}" >
-            <img src="{{ url_for('static', filename='profiles/'+message.avatar+'.png') }}"
+            <img src="{{ profile_pic(message.avatar) }}"
                 alt="avatar" class="avatar" />
                 {{ message.username }}
             </a> |

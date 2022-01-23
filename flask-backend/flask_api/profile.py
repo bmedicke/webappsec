@@ -19,6 +19,13 @@ blueprint = Blueprint("profile", __name__)
 # TODO: allow user to change the password
 
 
+def profile_pic(basename):
+    """
+    returns relative path to profile picture
+    """
+    return url_for("static", filename="profiles/" + basename + ".png")
+
+
 @blueprint.route("/profile")
 @login_required
 def profile():

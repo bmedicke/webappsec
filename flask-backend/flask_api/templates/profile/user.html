@@ -14,7 +14,7 @@
 
 {% if user.private == 0 %}
 
-<img src="{{ url_for('static', filename='profiles/'+user.avatar+'.png') }}"
+<img src="{{ profile_pic(user.avatar) }}"
 class="avatar" alt="avatar"/>
 <div>{{ user.about }}</div>
 
