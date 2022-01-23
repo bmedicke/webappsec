@@ -33,6 +33,7 @@ def message_post():
 
     else:
         db = get_db()
+        # write message to database:
         db.execute(
             """
             INSERT INTO message (author_id, text)

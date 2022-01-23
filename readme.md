@@ -36,7 +36,13 @@ returns html
     * [x] auth
     * [x] profile
     * [x] message
-* [ ] read each line again and add comments
+* [x] read each line again and add comments
+    * [x] init
+    * [x] database
+    * [x] auth
+    * [x] profile
+    * [x] message
+* [ ] style it!
 * [ ] check OWASP top 10
 * [ ] mention linting (black, pyflakes)
 * [ ] check if libs are outdated (vuln scanner?)
