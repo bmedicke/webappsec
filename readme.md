@@ -73,6 +73,7 @@ other interesting libs:
 
 * https://github.com/flasgger/flasgger
 * https://flask-sqlalchemy.palletsprojects.com/
+* flask-login (session handling)
 
 # Flask
 
