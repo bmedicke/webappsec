@@ -47,6 +47,9 @@ docker-compose up -d # start db and adminer.
 * used libraries:
     * flask, fastapi, connexion
         * the libraries to compare
+    * flask-wtf
+        * flask wtforms integration (with csrf protection)
+        * https://testdriven.io/blog/csrf-flask/#how-to-prevent-csrf
     * python-dotenv
         * for setting environment variables from `.env` files
     * sqlalchemy

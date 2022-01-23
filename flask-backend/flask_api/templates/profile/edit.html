@@ -29,6 +29,8 @@
         <input type="checkbox" name="private" id="private" {{ "checked" if g.user.private == 1 }}>
     </div>
 
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
     <input type="submit" value="save" />
     <a href="/profile" class='cancel-button'>
         <button type="button">cancel</button>

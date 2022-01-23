@@ -27,6 +27,7 @@
                            if g.user else "log in to start chatting" }}"
         class="chatbar" required
         {{ "disabled" if not g.user }}>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 </form>
 
 {% endblock %}

@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 from flask import Flask, escape, render_template
+from flask_wtf.csrf import CSRFProtect
 import os
 
 
@@ -51,4 +52,6 @@ def create_app(test_config=None):
     app.register_blueprint(message.blueprint)
     app.add_url_rule("/", endpoint="index")
 
+    csrf = CSRFProtect()
+    csrf.init_app(app)
     return app
