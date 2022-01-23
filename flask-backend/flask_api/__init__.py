@@ -11,7 +11,7 @@ def create_app(test_config=None):
     returns a Flask object
     """
     # create a flask instance with config files relative to this file:
-    # SECRET_KEY should be overwritten with a random value when deploying!
+    # TODO SECRET_KEY should be overwritten with a random value when deploying!
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY="dev",
