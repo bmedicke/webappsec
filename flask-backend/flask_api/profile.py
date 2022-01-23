@@ -1,6 +1,7 @@
 from flask import (
     Blueprint,
     current_app,
+    escape,
     flash,
     g,
     redirect,
@@ -96,7 +97,6 @@ def edit():
         return redirect(url_for("profile.profile"))
 
 
-# TODO: escape this endpoint?
 @blueprint.route("/user/<int:id>")
 def user(id):
     """
@@ -111,7 +111,7 @@ def user(id):
         FROM user
         WHERE id = ?
         """,
-        (id,),
+        (escape(id),),
     ).fetchone()
 
     return render_template("/profile/user.html", user=user)
