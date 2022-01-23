@@ -24,10 +24,27 @@
 
 # TODO
 
-* user registration
-* authentication
-* JWT
-* two-factor login
+* [ ] add docstrings to functions
+* [ ] read each line again and add comments
+* [ ] check OWASP top 10
+* [ ] mention linting (black, pyflakes)
+* [ ] check if libs are outdated (vuln scanner?)
+* [ ] check out https://pythonhosted.org/Flask-Security/
+* [ ] check out https://github.com/FHPythonUtils/PyTaintX
+* [ ] finish tutorial
+* [ ] write some tests
+* [ ] `ri todo`
+* [ ] session lifetime?
+* [ ] JWT?
+* [ ] two-factor login?
+
+**things to mention**
+
+* [ ] application factory
+* [ ]`SECRET_KEY` https://flask.palletsprojects.com/en/2.0.x/config/#SECRET_KEY
+    * via env 
+* [ ] debug mode (werkzeug), production mode (proper wsgi server)
+
 
 # local setup
 
