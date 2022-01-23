@@ -6,7 +6,7 @@ import sqlite3
 
 def init_app(app):
     """
-    registers function with the flask app factory
+    registers setup/cleanup functions with the flask app factory
     """
     # disconnect from db on exit:
     app.teardown_appcontext(close_db)
@@ -24,13 +24,12 @@ def init_db():
         db.executescript(schema.read().decode("utf8"))
 
 
-@click.command("init-db")
+@click.command("init-db") # called via: flask init-db
 @with_appcontext
 def init_db_cli():
     """
     recreate database tables (all data is lost)
     """
-    # called via: flask init-db
 
     init_db()
     click.echo("database initialized")
