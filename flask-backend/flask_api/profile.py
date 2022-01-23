@@ -3,10 +3,10 @@ from flask import (
     current_app,
     flash,
     g,
+    redirect,
     render_template,
     request,
     url_for,
-    redirect,
 )
 from flask_api.auth import login_required
 from flask_api.database import get_db
