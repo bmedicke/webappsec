@@ -11,6 +11,7 @@ from flask import (
 from flask_api.database import get_db
 from werkzeug.security import check_password_hash, generate_password_hash
 import functools  # for creating a decorator.
+import os
 
 # auth blueprint to group views and related code:
 blueprint = Blueprint("auth", __name__, url_prefix="/auth")
@@ -22,7 +23,7 @@ def validate_credentials(username, password, password_confirmation):
 
     returns error or None
     """
-    PASSWORD_MIN_LEN = 12
+    PASSWORD_MIN_LEN = int(os.environ.get("PASSWORD_MIN_LEN"))
     error = None
 
     if not username:
@@ -72,7 +73,9 @@ def register():
 
         flash(error or "account created")
 
-    return render_template("auth/register.html")
+    return render_template(
+        "auth/register.html", pwd_min_len=os.environ.get("PASSWORD_MIN_LEN")
+    )
 
 
 @blueprint.route("/login", methods=("GET", "POST"))

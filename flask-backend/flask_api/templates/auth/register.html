@@ -9,7 +9,7 @@
 <form method="post" accept-charset="utf-8">
   <label for="username">username</label>
   <input type="text" name="username" id="username" value="" placeholder="username" required>
-  <label for="password">password (12 chars min.)</label>
+  <label for="password">password ({{ pwd_min_len }} chars min.)</label>
   <input type="password" name="password" id="password" value="" placeholder="password" pattern='.{12,}' required>
   <label for="password_confirmation">password confirmation</label>
   <input type="password" name="password_confirmation" id="password-content" value="" pattern='.{12,}' placeholder="confirm password" required>
