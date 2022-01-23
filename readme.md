@@ -98,6 +98,7 @@
 * [ ] gitignore
 * [ ] externalized configuration
 * [ ] [SAST](https://owasp.org/www-community/Source_Code_Analysis_Tools)
+    * https://cheatsheetseries.owasp.org/IndexTopTen.html
 * [ ] escaping/quoting
 * [ ] http header
 * [ ] `npm audit` for python
