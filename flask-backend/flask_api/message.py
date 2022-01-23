@@ -14,6 +14,11 @@ blueprint = Blueprint("message", __name__)
 
 
 def message_post():
+    """
+    validates message and posts it on success
+
+    redirects to index
+    """
     error = None
 
     if g.user is None:
@@ -43,7 +48,9 @@ def message_post():
 @blueprint.route("/", methods=("GET", "POST"))
 def index():
     """
-    landing page
+    landing page, lists and sends messages
+
+    returns html
     """
     if request.method == "POST":
         return message_post()
@@ -66,6 +73,11 @@ def index():
 @blueprint.route("/create", methods=("GET", "POST"))
 @login_required
 def create():
+    """
+    sends messages
+
+    returns html
+    """
     if request.method == "POST":
         return message_post()
 
