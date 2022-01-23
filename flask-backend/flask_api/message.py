@@ -30,7 +30,6 @@ def message_post():
 
     if error is not None:
         flash(error)
-        return redirect(url_for("index"))
 
     else:
         db = get_db()
@@ -42,7 +41,8 @@ def message_post():
             (g.user["id"], text),
         )
         db.commit()
-        return redirect(url_for("index"))
+
+    return redirect(url_for("index"))
 
 
 @blueprint.route("/", methods=("GET", "POST"))
