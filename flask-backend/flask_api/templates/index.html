@@ -8,16 +8,16 @@
 
 <ul>
 {% for message in messages %}
-    <li class="flex font-mono">
-        <span class="pl-1 font-thin">{{ message.created }}
+    <li class="font-mono font-thin">
+        <span class="ml-2">{{ message.created }}</span>
         <a href="/user/{{ message.author_id }}" 
-           class="pl-1 font-medium">
+           class="">
             <img src="{{ profile_pic(message.avatar) }}"
-                class="mb-1 avatar inline"
+                class="avatar inline ml-2"
                 alt="avatar" />
-            {{ message.username }}
+            <span class="ml-2 font-bold">{{ message.username }}</span>
         </a>
-        <span class="pl-1 font-normal">{{ message.text }}</span>
+        <span>{{ message.text }}</span>
     </li>
 {% endfor %}
 </ul>
