@@ -1,5 +1,6 @@
 from flask import (
     Blueprint,
+    current_app,
     flash,
     g,
     render_template,
@@ -29,7 +30,7 @@ def profile():
 
 
 def get_profile_pics():
-    cwd = os.path.join(os.getcwd() + "/flask_api")
+    cwd = current_app.root_path
     rel_path = url_for("static", filename="profiles")
     files = glob(os.path.join(cwd + rel_path + "/*.png"))
     profile_pics = list()
