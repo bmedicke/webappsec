@@ -1,5 +1,5 @@
-from dotenv import load_dotenv
-from flask import Flask, escape, render_template
+from dotenv import load_dotenv  # automatically load .flaskenv
+from flask import Flask
 from flask_wtf.csrf import CSRFProtect
 import os
 
