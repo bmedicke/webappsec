@@ -1,40 +1,47 @@
 {% extends 'base.html' %}
 
 {% block header %}
-<h1>{% block title %} edit profile{% endblock %}</h1>
+<h1 class="font-thin text-3xl py-6 pl-2">{% block title %}edit profile{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
 
-<form method="post" accept-charset="utf-8">
-    <div class="form-group">
-        <label for="about">about</label>
-        <textarea name="about" id="about">{{ g.user.about }}</textarea>
+<form method="post" accept-charset="utf-8" class="p-3">
+    <div>
+        <label for="about" class="font-medium">about</label>
+        <br>
+        <textarea name="about" id="about" class="p-3 w-full bg-sky-50">{{ g.user.about }}</textarea>
     </div>
-    <div class="form-group">
+    <div>
         <label for="avatar">profile pic</label>
 
 {% for pic in profile_pics %}
+    <label class="flex bg-sky-50">
         <input type="radio" name="avatar" id="avatar" value="{{ pic }}"
         {{ "checked" if pic == g.user.avatar }}
+        class=""
         required>
         <img src="{{ profile_pic(pic) }}"
-         class="avatar" />
+         class="m-2 avatar" />
+    </label>
 {% endfor %}
 
 
     </div>
-    <div class="form-group">
+    <div class="p-3">
         <label for="private">private profile</label>
         <input type="checkbox" name="private" id="private" {{ "checked" if g.user.private == 1 }}>
     </div>
 
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
-    <input type="submit" value="save" />
+    <input type="submit" value="save" 
+        class="m-1 inline-block border border-blue-500 rounded py-1 px-3 bg-blue-500 text-white"
+        />
     <a href="/profile" class='cancel-button'>
-        <button type="button">cancel</button>
-    </a>
+        <button type="button"
+            class="m-1 inline-block border border-blue-500 rounded py-1 px-3 bg-blue-500 text-white">
+            cancel</button> </a>
 </form>
 
 

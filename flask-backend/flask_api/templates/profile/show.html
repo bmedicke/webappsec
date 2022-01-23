@@ -1,21 +1,27 @@
 {% extends 'base.html' %}
 
 {% block header %}
-<h1>{% block title %}my profile{% endblock %}</h1>
+<h1 class="font-thin text-3xl py-6 pl-2">{% block title %}my profile{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
 
-<ul>
-    <li> user: {{ g.user['username'] }} </li>
-    <li> profile pic: 
-        <img src="{{ profile_pic(g.user.avatar) }}" class="avatar" alt="avatar"/></li>
-    <li> about: {{ g.user['about'] }}
-    <li> your profile is currently {{ "private" if g.user.private else "public"}} </li>
+<ul class="p-3">
+    <li class="font-medium">user</li>
+    <li class="bg-sky-50 pl-2">{{ g.user['username'] }}</li>
+    <li class="font-medium">profile pic</li>
+    <li>
+        <img src="{{ profile_pic(g.user.avatar) }}" class="avatar ml-2" alt="avatar"/>
+    </li>
+    <li class="font-medium">about</li>
+    <li class="bg-sky-50 pl-2">{{ g.user['about'] }}</li>
+    <li class="italic mt-3">your profile is currently {{ "private" if g.user.private else "public"}} </li>
 </ul>
 
-<ul>
-    <li><a href="/profile/edit">edit profile</a></li>
+<ul class="p-3">
+    <li><a href="/profile/edit"
+           class="text-sky-700 hover:text-gray-700 p2" >
+           edit profile</a></li>
 </ul>
 
 {% endblock %}

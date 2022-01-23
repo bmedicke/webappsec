@@ -18,36 +18,43 @@
 
     {% if g.user %}
 
-        <nav>
-        <ul>
-            <li>
-               <a href="{{ url_for('index') }}">chat</a>
+        <ul class="flex pl-2">
+            <li class="mr-6">
+               <a href="{{ url_for('index') }}"
+                  class="text-sky-700 hover:text-gray-700 p2"
+                  >chat</a>
             </li>
-            <li>
-               <a href="{{ url_for('profile.profile')}}" >my profile</a>
+            <li class="mr-6">
+               <a href="{{ url_for('profile.profile')}}"
+                  class="text-sky-700 hover:text-gray-700 p2"
+                  >my profile</a>
             </li>
-            <li>
-              logged in as {{ g.user['username'] }}
-              (<a href="{{ url_for('auth.logout') }}">logout</a>)
+            <li class="mr-6">
+              <a href="{{ url_for('auth.logout') }}"
+                  class="text-sky-700 hover:text-gray-700 p2"
+                  >logout {{ g.user['username'] }}</a>
             </li>
         </ul>
-        </nav>
 
     {% else %}
 
-        <nav>
-        <ul>
-            <li>
-               <a href="{{ url_for('index') }}">chat</a>
+        <ul class="flex pl-2">
+            <li class="mr-6">
+               <a href="{{ url_for('index') }}"
+                  class="text-sky-700 hover:text-gray-700 p2"
+                  >chat</a>
             </li>
-            <li>
-              <a href="{{ url_for('auth.register') }}">register</a>
+            <li class="mr-6">
+              <a href="{{ url_for('auth.register') }}"
+                  class="text-sky-700 hover:text-gray-700 p2"
+                  >register</a>
             </li>
-            <li>
-              <a href="{{ url_for('auth.login') }}">login</a>
+            <li class="mr-6">
+              <a href="{{ url_for('auth.login') }}"
+                  class="text-sky-700 hover:text-gray-700 p2"
+                  >login</a>
             </li>
         </ul>
-        </nav>
 
     {% endif %}
 
@@ -55,7 +62,7 @@
 
     {% for message in get_flashed_messages() %}
 
-        <div class='p-4 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-2'>
+        <div class='p-4 max-w-sm mx-auto rounded-xl shadow-lg flex items-center space-x-2'>
             <div>
                 <div class='text-xl font-medium text-black'>
                     notice

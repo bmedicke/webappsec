@@ -1,22 +1,23 @@
 {% extends 'base.html' %}
 
 {% block header %}
-<h1>{% block title %}chat{% endblock %}</h1>
+<h1 class="font-thin text-3xl py-6 pl-2">{% block title %}global chat{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
 
 <ul>
 {% for message in messages %}
-    <li>
-        <i>{{ message.created }} |
-            <a href="/user/{{ message.author_id }}" >
+    <li class="flex font-mono">
+        <span class="pl-1 font-thin">{{ message.created }}
+        <a href="/user/{{ message.author_id }}" 
+           class="pl-1 font-medium">
             <img src="{{ profile_pic(message.avatar) }}"
-                alt="avatar" class="avatar" />
-                {{ message.username }}
-            </a> |
-        </i>
-        {{ message.text }}
+                class="mb-1 avatar inline"
+                alt="avatar" />
+            {{ message.username }}
+        </a>
+        <span class="pl-1 font-normal">{{ message.text }}</span>
     </li>
 {% endfor %}
 </ul>
@@ -25,7 +26,7 @@
     <input type="text" name="text"
         id="text" value="" placeholder="{{ "write your message here"
                            if g.user else "log in to start chatting" }}"
-        class="chatbar w-full" required
+        class="chatbar w-full pl-2 font-mono" required
         {{ "disabled" if not g.user }}>
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 </form>
