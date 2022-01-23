@@ -4,8 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet"
-        href="{{ url_for('static', filename='style.css') }}" type="text/css" media="all">
+    {# remove this for deployment: #}
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" type="text/css"
+        href="{{ url_for('static', filename='style.css') }}" media="all">
     <link rel="icon" type="image/png"
         href="{{ url_for('static', filename='favicon.png') }}" />
 

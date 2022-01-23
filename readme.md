@@ -162,6 +162,8 @@ docker-compose up -d # start db and adminer.
     * [**adminer** (localhost:7780)](http://localhost:7780)
         * web-based DB-GUI
 * used libraries:
+    * tailwind
+        * utility-class based styling
     * flask, fastapi, connexion
         * the libraries to compare
     * flask-wtf
