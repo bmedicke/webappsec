@@ -89,6 +89,22 @@
 * [ ] `old_endpoints.py` (user profiles escaped?)
 * [ ] CSRF tokens (`__init__.py` and `.html`s)
 * [ ] `/user/<int:id>` endpoint (with backup `escape()`)
+* [ ] git hooks, github webhooks
+* [ ] linten & static analysis
+* [ ] commits durchgehen, etwicklung der app
+* [ ] https://dependencytrack.org/
+* [ ] semgrep
+* [ ] dotenv
+* [ ] gitignore
+* [ ] externalized configuration
+* [ ] [SAST](https://owasp.org/www-community/Source_Code_Analysis_Tools)
+* [ ] escaping/quoting
+* [ ] http header
+* [ ] `npm audit` for python
+* [ ] set secure-ish session cookie flags
+* [ ] `ripgrep`
+* [ ] kein npm-audit für python github dependabot
+* [ ] jinja2 template
 
 
 **list of post endpoints**
