@@ -36,24 +36,22 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # register database functions with the app (includes cli command):
+    # routes are imported via blueprints:
+    from . import auth
     from . import database
+    from . import message
+    from . import profile
 
+    # register database functions with the app (includes cli command):
     database.init_app(app)
 
     # register authentication blueprint (register/login/logout):
-    from . import auth
-
     app.register_blueprint(auth.blueprint)
 
     # register profile blueprint (show/edit):
-    from . import profile
-
     app.register_blueprint(profile.blueprint)
 
-    # register message blueprint (including index endpoint):
-    from . import message
-
+    # register message blueprint (create, including index endpoint):
     app.register_blueprint(message.blueprint)
     app.add_url_rule("/", endpoint="index")
 
