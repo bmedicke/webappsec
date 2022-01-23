@@ -24,12 +24,6 @@
 
 # TODO
 
-```sh
-allows ...
-
-returns html
-```
-
 * [x] add docstrings to functions
     * [x] init
     * [x] database
