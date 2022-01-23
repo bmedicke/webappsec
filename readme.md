@@ -34,6 +34,7 @@
 * [ ] finish tutorial
 * [ ] write some tests
 * [ ] `ri todo`
+* [ ] visualize sqlite schema
 * [ ] session lifetime?
 * [ ] JWT?
 * [ ] two-factor login?
