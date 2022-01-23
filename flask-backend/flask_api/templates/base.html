@@ -45,12 +45,24 @@
             </li>
         </ul>
         </nav>
+
     {% endif %}
 
     {% block header %}{% endblock %}
 
     {% for message in get_flashed_messages() %}
-      <div class='flash'>{{ message }}</div>
+
+        <div class='p-4 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-2'>
+            <div>
+                <div class='text-xl font-medium text-black'>
+                    notice
+                </div>
+                <p class='text-slate-500'>
+                {{ message }}
+                </p>
+            </div>
+        </div>
+
     {% endfor %}
 
     <div class='content'>
