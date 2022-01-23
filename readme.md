@@ -41,7 +41,7 @@
 **things to mention**
 
 * [ ] application factory
-* [ ]`SECRET_KEY` https://flask.palletsprojects.com/en/2.0.x/config/#SECRET_KEY
+* [ ] `SECRET_KEY` https://flask.palletsprojects.com/en/2.0.x/config/#SECRET_KEY
     * via env 
 * [ ] debug mode (werkzeug), production mode (proper wsgi server)
 
