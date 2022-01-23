@@ -52,10 +52,98 @@
 
 **things to mention**
 
+* [ ] werkzeug only in development, not production (https://werkzeug.palletsprojects.com/en/2.0.x/serving/)
+    * https://flask.palletsprojects.com/en/2.0.x/tutorial/deploy/
 * [ ] application factory
-* [ ] `SECRET_KEY` https://flask.palletsprojects.com/en/2.0.x/config/#SECRET_KEY
-    * via env 
+* [ ] `app.config` options
+    * [ ] `SECRET_KEY` https://flask.palletsprojects.com/en/2.0.x/config/#SECRET_KEY
+        * set via env vars or `config.py`
+        * used for signing session cookies
+    * [ ] `PERMANENT_SESSION_LIFETIME` 31 days
+    * [ ] `SESSION_COOKIE_SECURE` and `SESSION_COOKIE_SAMESITE` False?
+    * [ ] `WTF_*`
+
+```python
+ {
+     'WTF_CSRF_ENABLED': True,
+     'WTF_CSRF_CHECK_DEFAULT': True,
+     'WTF_CSRF_METHODS': {'POST', 'DELETE', 'PATCH', 'PUT'},
+     'WTF_CSRF_FIELD_NAME': 'csrf_token',
+     'WTF_CSRF_HEADERS': ['X-CSRFToken', 'X-CSRF-Token'],
+     'WTF_CSRF_TIME_LIMIT': 3600,
+     'WTF_CSRF_SSL_STRICT': True
+ }
+```
+
 * [ ] debug mode (werkzeug), production mode (proper wsgi server)
+* [ ] sqlite is slow because writes happen concurrently
+* [ ] connections are tied to the request (closed before sending it)
+* [ ] `g` is a global (to the request) object, stores state during request only
+* [ ] `@login_required` decorator
+* [ ] blueprints and views (https://flask.palletsprojects.com/en/2.0.x/tutorial/views/)
+* [ ] `from werkzeug.security import check_password_hash, generate_password_hash`
+    * https://werkzeug.palletsprojects.com/en/2.0.x/utils/#werkzeug.security.generate_password_hash
+    * uses `pbkdf2:sha256` (https://en.wikipedia.org/wiki/PBKDF2)
+    * uses salt length of `16`
+* [ ] `GET` requests should not change the database
+* [ ] `old_endpoints.py` (user profiles escaped?)
+* [ ] CSRF tokens (`__init__.py` and `.html`s)
+* [ ] `/user/<int:id>` endpoint (with backup `escape()`)
+
+
+**list of post endpoints**
+
+grep for `.methods`
+
+* /
+* /create
+* /profile/edit
+* /register
+* /login
+
+**list of endpoints that write to the db**
+
+grep for `.commit`
+
+* / (via `message_post`)
+* /create (via `message_post`)
+* /profile/edit
+* /register
+
+**structure of the app**
+
+```sh
+(env) root::kali:flask_api:# tree                                                   0 [main]
+.
+├── auth.py
+├── database.py
+├── __init__.py
+├── message.py
+├── old_endpoints.py
+├── profile.py
+├── schema.sql
+├── static
+│   ├── profiles
+│   │   ├── 0000.png
+│   │   ├── 0001.png
+│   │   ├── 0002.png
+│   │   ├── 0003.png
+│   │   ├── 0004.png
+│   │   └── 0005.png
+│   └── style.css
+└── templates
+    ├── auth
+    │   ├── login.html
+    │   └── register.html
+    ├── base.html
+    ├── index.html
+    ├── message
+    │   └── create.html
+    └── profile
+        ├── edit.html
+        ├── show.html
+        └── user.html
+```
 
 
 # local setup
