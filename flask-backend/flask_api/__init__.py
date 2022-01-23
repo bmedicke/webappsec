@@ -10,11 +10,16 @@ def create_app(test_config=None):
 
     returns a Flask object
     """
-    # create a flask instance with config files relative to this file:
-    # TODO SECRET_KEY should be overwritten with a random value when deploying!
+
+    # read secret key from env vars when deploying,
+    # used for signing session cookies:
+    SECRET_KEY = os.environ.get("SECRET_KEY", "dev")
+
+    # name app after module name:
     app = Flask(__name__, instance_relative_config=True)
+
     app.config.from_mapping(
-        SECRET_KEY=os.environ.get("SECRET_KEY", "dev"),
+        SECRET_KEY=SECRET_KEY,
         DATABASE=os.path.join(app.instance_path, "flask-api.sqlite"),
     )
 
@@ -31,17 +36,17 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # register database functions with the app:
+    # register database functions with the app (includes cli command):
     from . import database
 
     database.init_app(app)
 
-    # register authentication blueprint:
+    # register authentication blueprint (register/login/logout):
     from . import auth
 
     app.register_blueprint(auth.blueprint)
 
-    # register profile blueprint:
+    # register profile blueprint (show/edit):
     from . import profile
 
     app.register_blueprint(profile.blueprint)
@@ -52,6 +57,8 @@ def create_app(test_config=None):
     app.register_blueprint(message.blueprint)
     app.add_url_rule("/", endpoint="index")
 
+    # require valid CSRF token for modifying requests:
     csrf = CSRFProtect()
     csrf.init_app(app)
+
     return app
