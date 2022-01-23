@@ -9,7 +9,6 @@ from flask import (
 )
 from flask_api.auth import login_required
 from flask_api.database import get_db
-from werkzeug.exceptions import abort
 
 blueprint = Blueprint("message", __name__)
 
