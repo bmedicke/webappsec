@@ -9,7 +9,9 @@
 <form method="post" accept-charset="utf-8">
     <div class="form-group">
         <label for="text">text</label>
-        <input type="text" name="text" id="text" value="" placeholder="message text" required>
+        <input type="text" name="text" id="text"
+            value="" placeholder="message text" required>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     </div>
 
     <input type="submit" value="save" />
