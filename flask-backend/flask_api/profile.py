@@ -24,14 +24,22 @@ blueprint = Blueprint("profile", __name__)
 def profile():
     """
     displays (logged in) user profile
+
+    returns html
     """
     return render_template("profile/show.html")
 
 
 def get_profile_pics():
-    cwd = current_app.root_path
-    rel_path = url_for("static", filename="profiles")
-    files = glob(os.path.join(cwd + rel_path + "/*.png"))
+    """
+    gets names of available profile pics
+
+    returns list of basenames without file ending
+    """
+    profiles_path = url_for("static", filename="profiles")
+    files = glob(
+        os.path.join(current_app.root_path + profiles_path + "/*.png")
+    )
     profile_pics = list()
 
     for file in files:
@@ -45,6 +53,8 @@ def get_profile_pics():
 def edit():
     """
     allows logged in users to edit their profile
+
+    returns html
     """
     if request.method == "GET":
         return render_template(
@@ -79,8 +89,14 @@ def edit():
         return redirect(url_for("profile.profile"))
 
 
+# TODO: escape this endpoint?
 @blueprint.route("/user/<int:id>")
 def user(id):
+    """
+    shows profile of user by id (if set to public)
+
+    return html
+    """
     db = get_db()
     user = db.execute(
         """

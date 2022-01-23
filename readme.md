@@ -25,6 +25,11 @@
 # TODO
 
 * [ ] add docstrings to functions
+    * [x] init
+    * [x] database
+    * [x] auth
+    * [x] profile
+    * [ ] message
 * [ ] read each line again and add comments
 * [ ] check OWASP top 10
 * [ ] mention linting (black, pyflakes)
