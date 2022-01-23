@@ -10,13 +10,18 @@ from flask import (
 )
 from flask_api.database import get_db
 from werkzeug.security import check_password_hash, generate_password_hash
-import functools
+import functools  # for creating a decorator.
 
 # auth blueprint to group views and related code:
 blueprint = Blueprint("auth", __name__, url_prefix="/auth")
 
 
 def validate_credentials(username, password, password_confirmation):
+    """
+    checks if password and username match requirements
+
+    returns error or None
+    """
     PASSWORD_MIN_LEN = 12
     error = None
 
@@ -39,7 +44,7 @@ def validate_credentials(username, password, password_confirmation):
 @blueprint.route("/register", methods=("GET", "POST"))
 def register():
     """
-    register blueprint
+    allows creation of new users
 
     returns html
     """
@@ -73,7 +78,9 @@ def register():
 @blueprint.route("/login", methods=("GET", "POST"))
 def login():
     """
-    login site
+    allows users to log in
+
+    returns html
     """
     if request.method == "POST":
         username = request.form["username"]
@@ -108,7 +115,7 @@ def login():
 @blueprint.before_app_request
 def load_logged_in_user():
     """
-    get session data from cookie if it exists
+    gets session data from cookie (if it exists)
 
     stores data in g object (for duration of request)
     """

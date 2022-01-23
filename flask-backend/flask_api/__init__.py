@@ -24,7 +24,7 @@ def create_app(test_config=None):
     )
 
     if test_config is None:
-        # load app config:
+        # load app config, can be used to set SECRET_KEY:
         app.config.from_pyfile("config.py", silent=True)
     else:
         # load test config:
@@ -36,7 +36,7 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # routes are imported via blueprints:
+    # views for routes are imported via blueprints:
     from . import auth
     from . import database
     from . import message
