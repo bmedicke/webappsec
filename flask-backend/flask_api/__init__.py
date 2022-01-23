@@ -2,8 +2,10 @@ from dotenv import load_dotenv  # automatically load .flaskenv
 from flask import Flask
 from flask_wtf.csrf import CSRFProtect
 import os
+import pprint
 
 
+# TODO test config?
 def create_app(test_config=None):
     """
     application factory function for the Flask app.
@@ -58,5 +60,8 @@ def create_app(test_config=None):
     # require valid CSRF token for modifying requests:
     csrf = CSRFProtect()
     csrf.init_app(app)
+
+    if app.debug:
+        pprint.pp(app.config)
 
     return app
