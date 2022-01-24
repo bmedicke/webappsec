@@ -25,6 +25,7 @@ of this writeup.)
   * [list of `POST` endpoints](#list-of-post-endpoints)
     * [list of endpoints that write to the db](#list-of-endpoints-that-write-to-the-db)
   * [structure of the app](#structure-of-the-app)
+    * [dunder init](#dunder-init)
   * [statistics](#statistics)
 * [things to mention](#things-to-mention)
 * [resources](#resources)
@@ -450,7 +451,7 @@ must be `escape()`d to prevent injections*
     * safe: `http://localhost:7701/u/<body onload='alert("this is bad");'>`
     * Jinja templates do this automatically (but you can explicitly disable this behaviour)
 
----
+### dunder init
 
 Abbreviated `__init__.py`, the starting point of the app:
 ```sh
