@@ -338,6 +338,11 @@ def no_injection(escaped):
     return f"{escape(escaped)}"
 ```
 
+![image](https://user-images.githubusercontent.com/173962/150808281-7de2dcef-07e6-4c2f-8292-b6751c91d16b.png)
+> route with escaping
+
+![image](https://user-images.githubusercontent.com/173962/150808466-9e7c93eb-5538-4560-b070-c0e3508481f3.png)
+> route without escaping allows for injection
 
 ## structure of the app**
 
