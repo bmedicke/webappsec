@@ -12,7 +12,7 @@ Since the game is still very much work in progress I have focused on creating a 
 
 * [TODO](#todo)
 * [local development setup](#local-development-setup)
-  * [Flask app](#flask-app)
+  * [starting the app](#starting-the-app)
 * [used libraries](#used-libraries)
 * [the chat app](#the-chat-app)
   * [list of post endpoints](#list-of-post-endpoints)
@@ -89,8 +89,8 @@ The app uses a [SQLite](https://www.sqlite.org/index.html) (file-based) database
 Before starting the app the database schema has to be used to create the database:
 
 ```sh
-flask init-db # apply db schema.
-sqlitebrowser instance/flask-api.sqlite
+flask init-db # apply db schema (recreates db if it exists).
+sqlitebrowser instance/flask-api.sqlite # take a look at the schema.
 flask run # see .flaskenv and .env for environment variables.
 ```
 
