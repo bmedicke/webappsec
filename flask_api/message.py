@@ -98,7 +98,7 @@ def delete(id):
 
     message_author = db.execute(
         """
-        SELECT *
+        SELECT author_id
         FROM message
         WHERE id = ?
         """,
