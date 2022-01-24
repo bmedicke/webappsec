@@ -6,7 +6,7 @@ Since the game is still very much work in progress I have focused on creating a 
 ![image](https://user-images.githubusercontent.com/173962/150765330-c4e8e70e-8386-4379-a71a-0ec44c814a83.png)
 
 
-## toc
+## table of contents
 
 <!-- vim-markdown-toc GFM -->
 
@@ -33,19 +33,32 @@ Since the game is still very much work in progress I have focused on creating a 
 
 # local setup
 
-```sh
-python3 -m venv env && source env/bin/activate
-pip install -r requirements.txt
+The app is based on [Flask](https://flask.palletsprojects.com/), a Python micro web framework.
+To get it running in development mode execute the following steps that will install all 
+required dependencies. For a detailed breakdown of used libraries see the section:
+[used libraries](#used-libraries).
 
-docker-compose up -d # start db and adminer.
+```sh
+git clone 'git@github.com:bmedicke/MCS3_WEB_seminar_paper.git' # clone repo.
+cd MCS3_WEB_seminar_paper # switch to it.
+
+python3 -m venv env # create virtual environment.
+source env/bin/activate # activate virtual environment.
+
+pip install -r requirements.txt # install dependencies.
+
+# optional:
+docker-compose up -d # start docker-compose services in background.
 ```
 
-* docker-compose services
-    * **db**: Postgres
-        * *security note: standard password should be changed to something secure*
-        * *security note: password should be removed from docker-compose file (and it should probably not be commited)*
-    * [**adminer** (localhost:7780)](http://localhost:7780)
-        * web-based DB-GUI
+The following docker-compose services are available:
+
+ * **db**: Postgres
+     * *security note: standard password should be changed to something secure*
+     * *security note: password should be removed from docker-compose file (and it should not be commited)* 
+     * since the app is currently using `sqlite` this service is not in use
+ * [**adminer** (localhost:7780)](http://localhost:7780)
+     * web-base database manager/GUI
 
 ## Flask app
 
