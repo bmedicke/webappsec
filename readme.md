@@ -313,7 +313,30 @@ so I am limited to these for now, even if it is not quite conform with REST)
 
 Other things to note when creating endpoints:
 
-* old_endpoints.py
+*Security note:* When creating an endpoint that extracts a variable
+from the url that is later used it has to be properly escaped!
+
+Compare the following two Flask routes:
+
+```python
+@app.route("/i/<unescaped>")
+def injection(unescaped):
+    """
+    injection demo route
+
+    localhost:7701/i/<body onload='alert("this is bad");'>
+    """
+    return f"{unescaped}"
+
+@app.route("/e/<escaped>")
+def no_injection(escaped):
+    """
+    injection-safe demo route
+
+    localhost:7701/e/<body onload='alert("this is bad");'>
+    """
+    return f"{escape(escaped)}"
+```
 
 
 ## structure of the app**
