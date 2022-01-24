@@ -671,8 +671,9 @@ def login_required(view):
 
 `validate_credentials()` is used to make sure that credentials supplied
 during the registration process are up to the configured standard.
-Personally I am annoyed by required special characters and numerals and
-prefer creating entropy by length ([xkcd 936](https://xkcd.com/936/)).
+Personally I am annoyed by enforced special characters, mixed case
+and numerals. I prefer creating entropy by length
+([xkcd 936](https://xkcd.com/936/)).
 
 ```python
 def validate_credentials(username, password, password_confirmation):
