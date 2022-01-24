@@ -597,7 +597,7 @@ def get_db():
 
 The `g` ("global") object is always present for each request
 and each request has its own version (global in the sense of the request).
-This is big part of Flask's design philosophy (thread-local objects). 
+This is big part of Flask's design philosophy (thread-local objects).
 
 Session data is a good example of data that can be stored in this object.
 (See [auth](#auth) section)
@@ -609,9 +609,119 @@ There are other thread-locals, among them `current_app`, which is used in this a
 
 ### auth
 
-* [ ] `@login_required` decorator
+`auth.py` contains both helper functions and the `/auth` endpoints.
+
+The following function is registered with the Flask app to run before each
+request. The `user_id` is read from the cookie and - if successful - user data
+is read from the database and stored in the `g` object (see previous section).
+
+All SQL statements are parameterized.
+
+```python
+@blueprint.before_app_request
+def load_logged_in_user():
+    """
+    gets session data from cookie (if it exists)
+
+    stores data in g object (for duration of request)
+    """
+    user_id = session.get("user_id")
+
+    if user_id is None:
+        g.user = None
+
+    else:
+        g.user = (
+            get_db()
+            .execute(
+                """
+                SELECT *
+                FROM user
+                WHERE id = ?
+                """,
+                (user_id,),
+            )
+            .fetchone()
+        )
+```
+
+The next function is a decorator. Applying this decorator to another function
+wraps that function with new functionality: If there is no user stored in the
+`g` object (no user logged in) it will redirect to the login page.
+This decorater is used to protect endpoints that should not be accessed
+anonymously.
+
+```python
+def login_required(view):
+    """
+    decorator for views that require authentication
+
+    returns view that redirects to login page if not logged in
+    """
+
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for("auth.login"))
+
+        return view(**kwargs)
+
+    return wrapped_view
+```
+
+`validate_credentials()` is used to make sure that credentials supplied
+during the registration process are up to the configured standard.
+Personally I am annoyed by required special characters and numerals and
+prefer creating entropy by length ([xkcd 936](https://xkcd.com/936/)).
+
+```python
+def validate_credentials(username, password, password_confirmation):
+    """
+    checks if password and username match requirements
+
+    returns error or None
+    """
+    PASSWORD_MIN_LEN = int(os.environ.get("PASSWORD_MIN_LEN"))
+    error = None
+
+    if not username:
+        error = "username can not be empty"
+
+    if not password:
+        error = "password can not be empty"
+
+    if len(password) < PASSWORD_MIN_LEN:
+        error = f"password too short ({PASSWORD_MIN_LEN} chars minimum)"
+
+    if password != password_confirmation:
+        error = "passwords do not match"
+
+    return error
+```
+
+*security note:* for ease of development and testing the
+configured `PASSWORD_MIN_LEN` in `.flaskenv` is currently only 12.
+This should be adjusted upward.
 
 ### profile
+
+The `/profile` endpoint is one example that should
+only be accessible when a user is actually logged in.
+
+This is accomplished by applying the aforementioned `@login_required`
+decorator.
+
+```python
+@blueprint.route("/profile")
+@login_required
+def profile():
+    """
+    displays (logged in) user profile
+
+    returns html
+    """
+    return render_template("profile/show.html")
+```
 
 > Flask protects you against one of the most common security problems of
 > modern web applications: cross-site scripting (XSS). Unless you deliberately
