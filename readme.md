@@ -316,7 +316,7 @@ Other things to note when creating endpoints:
 *Security note:* When creating an endpoint that extracts a variable
 from the url that is later used it has to be properly escaped!
 
-Compare the following two Flask routes:
+Compare the following two Flask routes (inspired by a bug):
 
 ```python
 @app.route("/i/<unescaped>")
@@ -338,11 +338,15 @@ def no_injection(escaped):
     return f"{escape(escaped)}"
 ```
 
+<br>
+
 ![image](https://user-images.githubusercontent.com/173962/150808281-7de2dcef-07e6-4c2f-8292-b6751c91d16b.png)
-> route with escaping
+> route with proper escaping of user input
+
+<br>
 
 ![image](https://user-images.githubusercontent.com/173962/150808466-9e7c93eb-5538-4560-b070-c0e3508481f3.png)
-> route without escaping allows for injection
+> route without proper input sanitization allows for JavaScript injection attacks
 
 ## structure of the app**
 
