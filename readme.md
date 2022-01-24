@@ -17,8 +17,6 @@
 * [local setup](#local-setup)
 * [Flask](#flask)
 * [resources](#resources)
-* [FastAPI](#fastapi)
-* [Connexion](#connexion)
 
 <!-- vim-markdown-toc -->
 
@@ -251,6 +249,3 @@ must be `escape()`d to prevent injections*
 
 * https://github.blog/2021-12-06-write-more-secure-code-owasp-top-10-proactive-controls/
 
-# FastAPI
-
-# Connexion
