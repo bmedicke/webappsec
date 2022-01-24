@@ -459,7 +459,7 @@ The following ASCII diagram shows the project structure:
 
 * *security note:* the `.flaskenv` file should not be commited if there are
 any secrets stored in it
-    * you sould use the `.env` file for secrets (which is in `.gitignore`)
+    * you should use the `.env` file for secrets (which is in `.gitignore`)
 
 ### dunder init
 
@@ -567,6 +567,41 @@ endpoints from CSRF protection with the `@csrf.exempt` decorator.
 This is not recommended.
 
 ### database
+
+`database.py` file contains utility functions such as for creating and destroying connections.
+
+The most commonly used function is `get_db()`.
+It connects to the SQLite database and stores the connection
+in the `g` object.
+
+
+```python
+def get_db():
+    """
+    creates database connection or gets existing one from app context
+
+    returns db attribute
+    """
+    # check for 'db' attribute in current app context:
+    if "db" not in g:
+        g.db = sqlite3.connect(
+            current_app.config["DATABASE"],
+            detect_types=sqlite3.PARSE_DECLTYPES,
+        )
+        g.db.row_factory = sqlite3.Row  # rows can be accessed like dicts.
+
+    return g.db
+```
+
+The `g` ("global") object is always present for each request
+and each request has its own version (global in the sense of the request).
+This is big part of Flask's design philosophy (thread-local objects). 
+
+Session data is a good example of data that can be stored in this object.
+(See [auth](#auth) section)
+
+It also reduces the number of variables you have to pass around and improves
+readability and maintainability.
 
 ### auth
 
