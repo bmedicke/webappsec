@@ -33,7 +33,7 @@ of this writeup.)
 
 # TODO
 
-* [x] grep for todos and fix them (`rg -i todo`)
+* [ ] grep for todos and fix them (`rg -i todo`)
 * [ ] write tests
 * [ ] deploy app with https certificate
 * [ ] change docstrings to flasgger format
@@ -187,7 +187,8 @@ The old schema was based on a private messaging function. It also stored salt an
 ![image](https://user-images.githubusercontent.com/173962/145773177-4b7a9803-14c7-43c1-ad70-7c5093fe7a5c.png)
 > old schema (PostGres)
 
-I've since changed my mind and switched to an exclusively, global chat:
+I've since changed my mind and switched to an exclusively, global chat
+(planned to be a proximity-based chat in the game)
 
 ![image](https://user-images.githubusercontent.com/173962/150687869-9d1d31de-7728-43e8-ba88-9b2e3a3328ab.png)
 > current schema (SQLite)
@@ -209,6 +210,13 @@ Note the following:
       * Not in this instance though, since the stored passwords are hashed with
       a salt. (The `password` field actually stores 3 things: the algorithm, the hashed password and the salt itself)
 * the `user` table has a field named `private` that stores wheter the user profile should be hidden
+  * since sqlite does not have a Boolean type this is stored as `INTEGER` and cast to `bool` before usage
+  * for **privacy reasons** this **defaults to `True`** when creating a new user
+  * a user public profile shows: their profile picture, the customizable about text and their username
+  * a private user profile only shows: `private user`
+  * a non existing user profile also shows: `private user` to **avoid user enumeration**
+  * users have the option to set this option to `False` in their profile
+* **TODO**: add `coordinates` field to both the `message` and `user` table for proximity-based chatting
 
 <br>
 
