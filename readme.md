@@ -722,19 +722,14 @@ The following points should be considered when deploying the app to production:
 * [ ] semgrep
 * [ ] [SAST](https://owasp.org/www-community/Source_Code_Analysis_Tools)
     * https://cheatsheetseries.owasp.org/IndexTopTen.html
-* [ ] escaping/quoting
 * [ ] http header
-* [ ] `npm audit` for python
-* [ ] set secure-ish session cookie flags
-* [ ] `ripgrep`
-* [ ] kein npm-audit für python github dependabot
+* [ ] set session cookie flags
 * [ ] check OWASP top 10
-* [ ] check if libs are outdated (vuln scanner?)
 * [ ] check out https://pythonhosted.org/Flask-Security/
 * [ ] check out https://github.com/FHPythonUtils/PyTaintX
-* [ ] session lifetime?
-* [ ] mention JWT?
-* [ ] two-factor login?
+* [ ] adjust the session lifetime
+* [ ] consider JWT
+* [ ] consider two-factor authentification
 
 # useful resources
 
