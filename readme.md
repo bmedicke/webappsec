@@ -659,10 +659,8 @@ SUM:                            14            177            156            530
 
 ## workflow
 
+Next to local pre/post-commit hooks there are also serverside solutions.
 GitHub provides several security and analysis features that should be enabled:
-
-The Dependabot security updates are a great alternative to the Node-only
-`npm audit`.
 
 ![image](https://user-images.githubusercontent.com/173962/150846032-16a77314-497b-47f4-ab98-8374a11bf56a.png)
 > GitHub Security Checks
@@ -671,13 +669,21 @@ This particular dependency is not critical as IronPython is only used
 in the debugging workflow but the alerts work (and are near instant after
 activating the above option):
 
+The Dependabot security updates are a great alternative to the Node-only
+`npm audit`. The `depandabot` bot even sends pull requests with updates:
+
+
 ![image](https://user-images.githubusercontent.com/173962/150846489-ba7f768d-79b5-4304-a71e-03e7f0a498c1.png)
 > Pull request to update dependency
+
+Interacting with the GitHub servers via `git` also provides warnings:
 
 ![image](https://user-images.githubusercontent.com/173962/150847263-58d32059-f982-4425-a5a6-43788806b17e.png)
 > CLI notification from the GitHub server when pushing
 
 ## deployment
+
+The following points should be considered when deploying the app to production:
 
 * [ ] werkzeug only in development, not production (https://werkzeug.palletsprojects.com/en/2.0.x/serving/)
     * https://flask.palletsprojects.com/en/2.0.x/tutorial/deploy/
