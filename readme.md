@@ -42,6 +42,7 @@ of this writeup. Highly recommended!)
 * [ ] grep for todos and fix them (`rg -i todo`)
 * [ ] write tests
 * [ ] deploy app with https certificate
+  * see [deployment](#deployment) section for details
 * [ ] change docstrings to flasgger format
 * [ ] switch to PostGres
 * [ ] use type hinting
@@ -628,12 +629,41 @@ it is a self-evident target for injection attacks
 ![image](https://user-images.githubusercontent.com/173962/150844630-f64c4daa-206e-4e1a-a012-420c1934d895.png)
 > enumerating strings over the about field
 
+Since Jinja escapes variable input and output by default none of the endpoints are vulnerable.
+
 ![image](https://user-images.githubusercontent.com/173962/150844990-3522289d-ebc7-4501-a905-b273738b042c.png)
 > not vulnerable to injection attacks
 
 I have used SQL injections strings from
 [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/SQLite%20Injection.md)
 and [Injecting SQLite database based application](https://www.exploit-db.com/docs/english/41397-injecting-sqlite-database-based-applications.pdf) by Manish Kishan Tanwar.
+
+```python
+def get_profile_pics():
+    """
+    gets names of available profile pics
+
+    returns list of basenames without file ending
+    """
+    profiles_path = url_for("static", filename="profiles")
+    files = glob(
+        os.path.join(current_app.root_path + profiles_path + "/*.png")
+    )
+    profile_pics = list()
+
+    for file in files:
+        profile_pics.append(os.path.basename(file.strip(".png")))
+
+    return profile_pics
+```
+
+The profile picture field is not a direct file upload and
+can only contain ids of pictures returned by the function above:
+
+```python
+if avatar not in get_profile_pics():
+    error = "invalid profile picture choice"
+```
 
 ### message
 
