@@ -65,6 +65,14 @@ Both `.flaskenv` and `.env` are automatically parsed.
 
 ---
 
+You can use `flask generate-secret-key` to create your own secure key:
+
+> ![image](https://user-images.githubusercontent.com/173962/150771984-e03b5e90-da39-4d15-a347-a190c1ee2fec.png)
+> 
+> example run of `flask generate-secret-key` (be sure to run it yourself)
+
+---
+
 The following docker-compose services are available:
 
  * **db**: Postgres
