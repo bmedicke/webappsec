@@ -119,7 +119,7 @@ To check if configuration changes took affect you can run `flask read-config`:
 * [bcrypt](https://github.com/pyca/bcrypt/)
     * password salting and hashing
         * *security note: bcrypt truncates passwords to 72 bytes*
-    * no longer used (switched to flask-wtf)
+    * no longer used for this project (switched to flask-wtf)
 * [python-dotenv](https://github.com/theskumar/python-dotenv)
     * for setting environment variables in Python from dotfiles
     * can be used standalone but also acts as Flask extension when imported into a Flask app:
@@ -146,6 +146,15 @@ To check if configuration changes took affect you can run `flask read-config`:
     * ptpython is used for debugging:
       * for proper code completion in the breakpoints REPL
     * ptpython requires the (nonstandard) IronPython runtime
+* [Jinja2](https://www.palletsprojects.com/p/jinja/)
+    * Flask's default template engine
+    * similar to Django's templating syntax:
+        * control structures `{% %}`
+        * variable values `{{ }}`
+        * comments `{# #}`
+    * *supports Unicode*
+    * *automatic HTML escaping*
+    * *optional Sandbox to evaluete untrusted code*
 * [Tailwind CSS](https://tailwindcss.com/)
     * Tailwind provides utility-class based styling
 
