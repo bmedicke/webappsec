@@ -905,14 +905,14 @@ and protected by server side checks.
 
 Static analysis:
 
-I have looked for a static analysis tool for Python 3.9 and Flask. So far
+I have looked for a static analysis tool for Python and Flask. So far
 I have found: 
 
 * https://github.com/python-security/pyt
-  * which no longer works with the latest version
+  * which no longer works with recent versions of Python
 * https://github.com/FHPythonUtils/PyTaintX
   * a (more recently) maintained fork
-  * which I could also not get to work consistently
+  * which I could also not get to work consistently with Python 3.9
 
 ![image](https://user-images.githubusercontent.com/173962/150859927-1078b80a-331b-409f-965c-2c08ee60e528.png)
 > exceptions with Python 3.9
@@ -935,8 +935,6 @@ HTML                             8             54              0            244
 SUM:                            14            177            156            530
 -------------------------------------------------------------------------------
 ```
-
-
 
 ## workflow
 
