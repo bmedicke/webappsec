@@ -348,6 +348,42 @@ def no_injection(escaped):
 ![image](https://user-images.githubusercontent.com/173962/150808466-9e7c93eb-5538-4560-b070-c0e3508481f3.png)
 > route without proper input sanitization allows for JavaScript injection attacks
 
+<br>
+
+---
+
+It is also possible to restrict the variable part of a route to a datatype,
+which can mitigate this kind of attack as well. See the `/user` route from
+[profile.py](https://github.com/bmedicke/MCS3_WEB_seminar_paper/blob/main/flask_api/profile.py#L97-L114) for an example:
+
+```python
+@blueprint.route("/user/<int:id>")
+def user(id):
+    """
+    shows profile of user by id (if set to public)
+
+    returns html
+    """
+    db = get_db()
+    user = db.execute(
+        """
+        SELECT username, private, avatar, about
+        FROM user
+        WHERE id = ?
+        """,
+        (escape(id),),
+    ).fetchone()
+
+    return render_template("/profile/user.html", user=user)
+```
+
+Note the following:
+
+* the user route will only trigger for integers in the variable part of the URL: `<int:id>`
+* I have chosen to `escape()` the input nontheless in case the endpoint is
+  edited in the future
+* SQL queries in this app use parameterized statements (the sqlite3 library does not support prepared statements)
+
 ## structure of the app**
 
 ```sh
