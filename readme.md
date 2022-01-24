@@ -182,12 +182,12 @@ The following sections cover a specific aspect of the chat app each:
 
 ## database schema
 
-The old schema was based on a private messaging function.
+The old schema was based on a private messaging function. It also stored salt and password in seperate fields.
 
 ![image](https://user-images.githubusercontent.com/173962/145773177-4b7a9803-14c7-43c1-ad70-7c5093fe7a5c.png)
 > old schema (PostGres)
 
-I've since changed my mind and switched to a global chat:
+I've since changed my mind and switched to an exclusively, global chat:
 
 ![image](https://user-images.githubusercontent.com/173962/150687869-9d1d31de-7728-43e8-ba88-9b2e3a3328ab.png)
 > current schema (SQLite)
@@ -203,10 +203,12 @@ Note the following:
   * `username` is `UNIQUE`
   * **potentially dangerous bug**: `password` was unique for some time as well
       * This kind of bug might have been exploited by an attacker by creating accounts with
-      common passwords and checking if a server error occurs. On a server error
+      common passwords (and unlikely usernames) and checking if a server error occurs. On a server error
       the attacker could have tried known usernames (from the chat) with the
       identified passwords.
-      * Not in this instance though, since the stored passwords are hashed with a salt. (The field actually stores 3 things: the algorithm, the hashed password and the salt itself)
+      * Not in this instance though, since the stored passwords are hashed with
+      a salt. (The `password` field actually stores 3 things: the algorithm, the hashed password and the salt itself)
+* the `user` table has a field named `private` that stores wheter the user profile should be hidden
 
 ---
 
