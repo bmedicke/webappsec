@@ -53,7 +53,7 @@ def gen_secret_key():
 @with_appcontext
 def read_config():
     """
-    creates a value that can be used for the SECRET_KEY environment variable
+    pretty prints the current app config
     """
 
     pprint(current_app.config)
