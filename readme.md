@@ -124,6 +124,10 @@ To check if configuration changes took affect you can run `flask read-config`:
     * for setting environment variables in Python from dotfiles
     * can be used standalone but also acts as Flask extension when imported into a Flask app:
         * automatically parses `.env` and `.flaskenv`
+* [sqlite3](https://docs.python.org/3/library/sqlite3.html)
+    * SQLite is a file-based, self-contained SQL database engine
+    * easy to use during prototyping
+    * this is part of the Python standard library
 * [click](https://click.palletsprojects.com/)
     * library for command line parsing
     * can be used standalone but also acts as Flask extension when imported into a Flask app:
@@ -138,6 +142,7 @@ To check if configuration changes took affect you can run `flask read-config`:
 * [psycopg\[pool,binary\]](https://www.psycopg.org/) (versions 3) and psycopg2-binary (version 2)
     * Postgres adapter (for notify/listen events)
     * not yet used in `main` branch
+    * alternative to sqlite
 * [black](https://github.com/psf/black)
     * highly opinionated Python code formatter
     * code style for this project: `black -l79 **/*.py`
