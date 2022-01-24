@@ -142,7 +142,7 @@ To check if configuration changes took affect you can run `flask read-config`:
 * [psycopg\[pool,binary\]](https://www.psycopg.org/) (versions 3) and psycopg2-binary (version 2)
     * Postgres adapter (for notify/listen events)
     * not yet used in `main` branch
-    * alternative to sqlite
+    * planned alternative for sqlite
 * [black](https://github.com/psf/black)
     * highly opinionated Python code formatter
     * code style for this project: `black -l79 **/*.py`
