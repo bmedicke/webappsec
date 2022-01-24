@@ -16,6 +16,7 @@ import os
 
 blueprint = Blueprint("profile", __name__)
 
+
 def profile_pic(basename):
     """
     returns relative path to profile picture
