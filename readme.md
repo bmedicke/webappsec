@@ -21,8 +21,8 @@ of this writeup.)
 * [used libraries](#used-libraries)
 * [the chat app](#the-chat-app)
   * [database schema](#database-schema)
-  * [list of get endpoints](#list-of-get-endpoints)
-  * [list of post endpoints](#list-of-post-endpoints)
+  * [list of `GET` endpoints](#list-of-get-endpoints)
+  * [list of `POST` endpoints](#list-of-post-endpoints)
     * [list of endpoints that write to the db](#list-of-endpoints-that-write-to-the-db)
   * [structure of the app**](#structure-of-the-app)
   * [statistics](#statistics)
@@ -252,52 +252,69 @@ Note the following:
 
 ---
 
-* [flask (localhost:7701)](http://localhost:7701)
-* *security note: the `.flaskenv` file should not be commited if there are
-any secrets stored in it*
-    * you could use the `.env` file for secrets
-* *security note: when returning HTML (the default) user provided values
-must be `escape()`d to prevent injections*
-    * unsafe: `http://localhost:7701/i/<body onload='alert("this is bad");'>`
-    * safe: `http://localhost:7701/u/<body onload='alert("this is bad");'>`
-    * Jinja templates do this automatically
-* thread local objects (for thread safety) and notes about security
-    * flask protects against XSS. (via flask itself and jinja2)
-        * https://flask.palletsprojects.com/en/1.0.x/advanced_foreword/
-* **security note**: use type hinting
-* try injections: https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/SQLite%20Injection.md
+The following is a short overview of available endpoints and a manual analysis
+of endpoints (specifically methods) that have the potential to change data:
 
----
+## list of `GET` endpoints
 
-* start out with `sqlite`, maybe switch to postgres later
-    * sqlite is purely concurrent and might be too slow for larger apps
-* the `flask-api` directory contains a python package (`__init__.py`) for the app with the application factory (`create_app()`)
+Grep sourcecode for `.route`:
 
+* [/](http://localhost:7701/)
+  * the landing page and main chat interface
+* [/user/\<int:user_id\>](http://localhost:7701/user/0)
+  * user profile pages
+* [/auth/register](http://localhost:7701/auth/register)
+  * form to create a new account
+* [/auth/login](http://localhost:7701/auth/login)
+  * form to login
+* [/auth/logout](http://localhost:7701/auth/logout)
+  * endpoint to logout
+* [/profile](http://localhost:7701/profile)
+  * displays own user profile (different from `/user/`)
+* [/profile/edit](http://localhost:7701/profile/edit)
+  * edit user profile of logged-in user
+* ~~[/create](http://localhost:7701/create)~~
+  * form to send a message
+  * functionality integrated into the `/` endpoint
+    * avoids duplication of code and improves maintainability
 
-The following is a short overview of available endpoints:
+## list of `POST` endpoints
 
-## list of get endpoints
+Grep for `.methods`:
 
-## list of post endpoints
-
-grep for `.methods`
-
-* /
-* /create
-* /profile/edit
-* /register
-* /login
-* /delete/<int:id>
+* `/`
+  * post a message from `/` by pressing enter from the chat bar
+* `/delete/<int:message_id>`
+  * deletes a message (if logged-in user is the author)
+  * send POST-request from `/` by clicking red cross
+* `/profile/edit`
+  * POST-request from same endpoint
+* `/auth/register`
+  * POST-request via form on same endpoint
+* `/auth/login`
+  * POST-request via form on same endpoint
 
 ### list of endpoints that write to the db
 
-grep for `.commit`
+Grep for `.commit`:
 
-* / (via `message_post`)
-* /create (via `message_post`)
-* /profile/edit
-* /register
-* /delete/<int:id>
+* `/` (via `message_post()`), POST
+* `/profile/edit`, POST
+* `/register`, POST
+* `/delete/<int:message_id>`, POST
+
+Cross reference of endpoints with functions that can change the database:
+
+**All endpoints that have the ability to change the database are POST**.
+(As far as I know only `POST` and `GET` methods are allowed in forms,
+so I am limited to these, even if it is not quite conform with REST)
+
+---
+
+Other things to note when creating endpoints:
+
+* old_endpoints.py
+
 
 ## structure of the app**
 
@@ -353,6 +370,28 @@ SUM:                            14            177            156            530
 -------------------------------------------------------------------------------
 
 ```
+* [flask (localhost:7701)](http://localhost:7701)
+* *security note: the `.flaskenv` file should not be commited if there are
+any secrets stored in it*
+    * you could use the `.env` file for secrets
+* *security note: when returning HTML (the default) user provided values
+must be `escape()`d to prevent injections*
+    * unsafe: `http://localhost:7701/i/<body onload='alert("this is bad");'>`
+    * safe: `http://localhost:7701/u/<body onload='alert("this is bad");'>`
+    * Jinja templates do this automatically
+* thread local objects (for thread safety) and notes about security
+    * flask protects against XSS. (via flask itself and jinja2)
+        * https://flask.palletsprojects.com/en/1.0.x/advanced_foreword/
+* **security note**: use type hinting
+* try injections: https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/SQLite%20Injection.md
+
+---
+
+* start out with `sqlite`, maybe switch to postgres later
+    * sqlite is purely concurrent and might be too slow for larger apps
+* the `flask-api` directory contains a python package (`__init__.py`) for the app with the application factory (`create_app()`)
+
+
 
 # things to mention
 
