@@ -21,8 +21,9 @@
 
 # TODO
 
-* [x] `rg -i todo`
+* [x] grep for todos and fix them (`rg -i todo`)
 * [ ] write tests
+* [ ] deploy app with https
 
 # local setup
 
