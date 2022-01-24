@@ -3,8 +3,7 @@
 For my WEB (web application security) seminar paper I have decided to write a chat-app with profile function that can be integrated in a canvas-based multiplayer game.
 Since the game is still very much work in progress I have focused on creating a web-app with the corresponding functionality.
 
-> ![image](https://user-images.githubusercontent.com/173962/150765330-c4e8e70e-8386-4379-a71a-0ec44c814a83.png)
-> 
+![image](https://user-images.githubusercontent.com/173962/150765330-c4e8e70e-8386-4379-a71a-0ec44c814a83.png)
 > landing page for logged-in users
 
 ## table of contents
@@ -51,6 +50,7 @@ pip install -r requirements.txt # install dependencies.
 # optional:
 docker-compose up -d # start docker-compose services in background.
 ```
+
 See [.flaskenv](https://github.com/bmedicke/MCS3_WEB_seminar_paper/blob/main/.flaskenv) for configuration options
 including the bound network interface and port. By default the development server will run at: [0.0.0.0:7701](http://0.0.0.0:7701).
 
@@ -66,10 +66,11 @@ Both `.flaskenv` and `.env` are automatically parsed.
 You can use `flask generate-secret-key` to create your own secure key. This command uses the `token_urlsafe()` function
 from Python's `secret` module to generate cryptographically strong random strings (32 characters long). **This string should not be commited**!
 
+<br>
 
-> ![image](https://user-images.githubusercontent.com/173962/150771984-e03b5e90-da39-4d15-a347-a190c1ee2fec.png)
-> 
+![image](https://user-images.githubusercontent.com/173962/150771984-e03b5e90-da39-4d15-a347-a190c1ee2fec.png)
 > example run of `flask generate-secret-key` (be sure to run it yourself)
+<br>
 
 ---
 
