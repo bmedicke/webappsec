@@ -193,6 +193,30 @@ I've since changed my mind and switched to an exclusively, global chat
 ![image](https://user-images.githubusercontent.com/173962/150687869-9d1d31de-7728-43e8-ba88-9b2e3a3328ab.png)
 > current schema (SQLite)
 
+<br>
+
+relevant sections from `schema.sql`:
+
+```sql
+CREATE TABLE user (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  username TEXT UNIQUE NOT NULL,
+  password TEXT NOT NULL,
+  avatar TEXT NOT NULL DEFAULT '0000',
+  about TEXT DEFAULT '',
+  private INTEGER NOT NULL DEFAULT 1
+);
+
+CREATE TABLE message (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  author_id INTEGER NOT NULL,
+  created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  text TEXT NOT NULL,
+  FOREIGN KEY (author_id) REFERENCES user (id)
+);
+
+```
+
 Note the following:
 
 * the `id` fields are auto-incrementing primary keys of type `INTEGER`
@@ -216,12 +240,13 @@ Note the following:
   * a private user profile only shows: `private user`
   * a non existing user profile also shows: `private user` to **avoid user enumeration** (auto-incrementing user ids would make this task trivial otherwise)
   * users have the option to set this option to `False` in their profile
+* `avatar` stores an image id (from a list of options) and not the path to an image or the image itself
 * **TODO**: add `coordinates` field to both the `message` and `user` table for proximity-based chatting
 
 <br>
 
 ![image](https://user-images.githubusercontent.com/173962/150795487-49f185aa-9e26-45ed-ad4c-307858765e6d.png)
-> user table via `sqlitebrowser`
+> user table via `sqlitebrowser`: showing the `id`, `username`, and `password` fields
 
 <br>
 
