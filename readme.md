@@ -31,6 +31,7 @@ of this writeup. Highly recommended!)
     * [profile](#profile)
     * [message](#message)
   * [analysis](#analysis)
+  * [workflow](#workflow)
   * [deployment](#deployment)
 * [useful resources](#useful-resources)
 
@@ -621,7 +622,8 @@ There are other thread-locals, among them `current_app`, which is used in this a
 
 Since the profile page allows users to write a long string
 and save it to their profile (the about field/biography)
-it is a self-evident target for injection attacks.
+it is a self-evident target for injection attacks
+(the same test was performed for the other POST endpoints).
 
 ![image](https://user-images.githubusercontent.com/173962/150844630-f64c4daa-206e-4e1a-a012-420c1934d895.png)
 > enumerating strings over the about field
@@ -657,8 +659,14 @@ SUM:                            14            177            156            530
 
 ## workflow
 
+GitHub provides several security and analysis features that should be enabled:
+
 ![image](https://user-images.githubusercontent.com/173962/150846032-16a77314-497b-47f4-ab98-8374a11bf56a.png)
 > GitHub Security Checks
+
+This particular dependency is not critical as IronPython is only used
+in the debugging workflow but the alerts work (and are near instant after
+activating the above option):
 
 ![image](https://user-images.githubusercontent.com/173962/150846489-ba7f768d-79b5-4304-a71e-03e7f0a498c1.png)
 > Pull request to update dependency
