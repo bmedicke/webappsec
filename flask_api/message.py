@@ -71,18 +71,18 @@ def index():
         return render_template("index.html", messages=messages)
 
 
-@blueprint.route("/create", methods=("GET", "POST"))
-@login_required
-def create():
-    """
-    sends messages
+# @blueprint.route("/create", methods=("GET", "POST"))
+# @login_required
+# def create():
+#     """
+#     sends messages
 
-    returns html
-    """
-    if request.method == "POST":
-        return message_post()
+#     returns html
+#     """
+#     if request.method == "POST":
+#         return message_post()
 
-    return render_template("message/create.html")
+#     return render_template("message/create.html")
 
 
 @blueprint.route("/delete/<int:id>", methods=("POST",))
