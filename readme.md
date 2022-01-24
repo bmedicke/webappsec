@@ -63,9 +63,9 @@ if the environment variable `SECRET_KEY` is not set. There are three ways to set
 
 Both `.flaskenv` and `.env` are automatically parsed.
 
----
+You can use `flask generate-secret-key` to create your own secure key. This command uses the `token_urlsafe()` function
+from Python's `secret` module to generate cryptographically strong random strings (32 characters long). **This string should not be commited**!
 
-You can use `flask generate-secret-key` to create your own secure key:
 
 > ![image](https://user-images.githubusercontent.com/173962/150771984-e03b5e90-da39-4d15-a347-a190c1ee2fec.png)
 > 
