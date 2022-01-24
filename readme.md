@@ -214,7 +214,7 @@ Note the following:
   * for **privacy reasons** this **defaults to `True`** when creating a new user
   * a user public profile shows: their profile picture, the customizable about text and their username
   * a private user profile only shows: `private user`
-  * a non existing user profile also shows: `private user` to **avoid user enumeration**
+  * a non existing user profile also shows: `private user` to **avoid user enumeration** (auto-incrementing user ids would make this task trivial otherwise)
   * users have the option to set this option to `False` in their profile
 * **TODO**: add `coordinates` field to both the `message` and `user` table for proximity-based chatting
 
