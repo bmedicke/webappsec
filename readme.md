@@ -898,6 +898,9 @@ integer.
 Same goes for the chat bar itself that is greyed out (client side)
 and protected by server side checks.
 
+![image](https://user-images.githubusercontent.com/173962/150858309-542479ab-00b9-4f09-9e3c-7b5bca70d970.png)
+> disabled chat bar
+
 ## analysis
 
 Lines of code:
