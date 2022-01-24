@@ -529,10 +529,13 @@ As an example here is part of the `index.html`:
 <!-- ... -->
 ```
 
-
+![image](https://user-images.githubusercontent.com/173962/150823071-697ef323-a8ae-4f40-97d8-5557461e6a0a.png)
+> the same form rendered in a browser
 
 And here a screenshot when creating a request without that token:
 
+![image](https://user-images.githubusercontent.com/173962/150823470-fac397b5-4f53-43a3-bc20-f4e4656b1964.png)
+> 400 bad request
 
 ## statistics
 
