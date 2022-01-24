@@ -63,7 +63,7 @@ docker-compose up -d # start docker-compose services in background.
 See [.flaskenv](https://github.com/bmedicke/MCS3_WEB_seminar_paper/blob/main/.flaskenv) for configuration options
 including the bound network interface and port. By default the development server will run at: [0.0.0.0:7701](http://0.0.0.0:7701).
 
-**Security note:** Note, that the secret, that is used for signing session cookies, defaults to `dev`
+*Security note:* Note, that the secret, that is used for signing session cookies, defaults to `dev`
 if the environment variable `SECRET_KEY` is not set. There are three ways to set this key when deploying:
 
 * via `export SECRET_KEY=xxxx` before starting flask
@@ -86,8 +86,8 @@ from Python's `secret` module to generate cryptographically strong random string
 The following docker-compose services are available:
 
  * **db**: Postgres
-     * *security note: standard password should be changed to something secure*
-     * *security note: password should be removed from docker-compose file (and it should not be commited)* 
+     * *security note:* standard password should be changed to something secure
+     * *security note:* password should be removed from docker-compose file (and it should not be commited)
      * since the app is currently using `sqlite` this service is not in use
  * [**adminer** (localhost:7780)](http://localhost:7780)
      * web-base database manager/GUI
@@ -122,7 +122,7 @@ To check if configuration changes took affect you can run `flask read-config`:
         * can be used without WTForms (as in this project)
 * [bcrypt](https://github.com/pyca/bcrypt/)
     * password salting and hashing
-        * *security note: bcrypt truncates passwords to 72 bytes*
+        * *security note:* bcrypt truncates passwords to 72 bytes
     * no longer used for this project (switched to flask-wtf)
 * [python-dotenv](https://github.com/theskumar/python-dotenv)
     * for setting environment variables in Python from dotfiles
@@ -384,8 +384,8 @@ Note the following:
 * I have chosen to `escape()` the input nontheless in case the endpoint is
   edited in the future (or if there's a bug in the endpoint handling)
 * SQL queries in this app use parameterized statements (the sqlite3 library does not support prepared statements)
-* *security note: when returning HTML (the default) user provided values
-must be `escape()`d to prevent injections*
+* *security note:* when returning HTML (the default) user provided values
+must be `escape()`d to prevent injections
     * unsafe: `http://localhost:7701/i/<body onload='alert("this is bad");'>`
     * safe: `http://localhost:7701/u/<body onload='alert("this is bad");'>`
     * Jinja templates do this automatically (but you can explicitly disable this behaviour)
@@ -447,8 +447,8 @@ The following ASCII diagram shows the project structure:
 
 <br>
 
-* *security note: the `.flaskenv` file should not be commited if there are
-any secrets stored in it*
+* *security note:* the `.flaskenv` file should not be commited if there are
+any secrets stored in it
     * you sould use the `.env` file for secrets (which is in `.gitignore`)
 
 ### dunder init
@@ -574,7 +574,7 @@ SUM:                            14            177            156            530
 * thread local objects (for thread safety) and notes about security
     * flask protects against XSS. (via flask itself and jinja2)
         * https://flask.palletsprojects.com/en/1.0.x/advanced_foreword/
-* **security note**: use type hinting
+* *security note*: use type hinting
 * try injections: https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/SQLite%20Injection.md
 
 ---
