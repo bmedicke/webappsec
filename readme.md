@@ -35,6 +35,7 @@ of this writeup.)
 * [x] grep for todos and fix them (`rg -i todo`)
 * [ ] write tests
 * [ ] deploy app with https certificate
+* [ ] change docstrings to flasgger format
 
 # local development setup
 
