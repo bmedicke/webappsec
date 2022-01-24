@@ -210,6 +210,13 @@ Note the following:
       a salt. (The `password` field actually stores 3 things: the algorithm, the hashed password and the salt itself)
 * the `user` table has a field named `private` that stores wheter the user profile should be hidden
 
+<br>
+
+![image](https://user-images.githubusercontent.com/173962/150795487-49f185aa-9e26-45ed-ad4c-307858765e6d.png)
+> user table via `sqlitebrowser`
+
+<br>
+
 ---
 
 * [flask (localhost:7701)](http://localhost:7701)
