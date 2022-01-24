@@ -24,7 +24,7 @@ of this writeup.)
   * [list of `GET` endpoints](#list-of-get-endpoints)
   * [list of `POST` endpoints](#list-of-post-endpoints)
     * [list of endpoints that write to the db](#list-of-endpoints-that-write-to-the-db)
-  * [structure of the app**](#structure-of-the-app)
+  * [structure of the app](#structure-of-the-app)
   * [statistics](#statistics)
 * [things to mention](#things-to-mention)
 * [resources](#resources)
@@ -384,7 +384,9 @@ Note the following:
   edited in the future
 * SQL queries in this app use parameterized statements (the sqlite3 library does not support prepared statements)
 
-## structure of the app**
+## structure of the app
+
+The following ASCII diagram shows the structure of the app:
 
 ```sh
 (env) root::kali:flask_api:# tree                                                   0 [main]
@@ -393,7 +395,6 @@ Note the following:
 ├── database.py
 ├── __init__.py
 ├── message.py
-├── old_endpoints.py
 ├── profile.py
 ├── schema.sql
 ├── static
