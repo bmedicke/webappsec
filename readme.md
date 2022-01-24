@@ -903,6 +903,18 @@ and protected by server side checks.
 
 ## analysis
 
+Static analysis:
+
+I have looked for a static analysis tool for Python 3.9 and Flask. So far
+I have found: 
+
+* https://github.com/python-security/pyt
+  * which no longer works with the latest version
+* https://github.com/FHPythonUtils/PyTaintX
+  * a (more recently) maintained fork
+  * which I could not get to work consistently
+
+
 Lines of code:
 
 ```sh
