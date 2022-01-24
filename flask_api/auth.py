@@ -110,7 +110,7 @@ def login():
         if error is None:
             session.clear()  # clear session dict.
             session["user_id"] = user["id"]
-            return redirect(url_for("index"))
+            return redirect(url_for("message.index"))
 
         flash(error)
 
@@ -150,7 +150,7 @@ def logout():
     destroys the current session and return user to index
     """
     session.clear()
-    return redirect(url_for("index"))
+    return redirect(url_for("message.index"))
 
 
 def login_required(view):

@@ -43,7 +43,7 @@ def message_post():
         )
         db.commit()
 
-    return redirect(url_for("index"))
+    return redirect(url_for("message.index"))
 
 
 @blueprint.route("/", methods=("GET", "POST"))
@@ -126,4 +126,4 @@ def delete(id):
         )
         db.commit()
 
-    return redirect(url_for("index"))
+    return redirect(url_for("message.index"))

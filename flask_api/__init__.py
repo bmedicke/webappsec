@@ -1,5 +1,6 @@
 from dotenv import load_dotenv  # automatically load .flaskenv
 from flask import Flask
+from flasgger import Swagger
 from flask_wtf.csrf import CSRFProtect
 import os
 
@@ -54,10 +55,12 @@ def create_app(test_config=None):
 
     # register message blueprint (create, including index endpoint):
     app.register_blueprint(message.blueprint)
-    app.add_url_rule("/", endpoint="index")
 
     # require valid CSRF token for modifying requests:
     csrf = CSRFProtect()
     csrf.init_app(app)
+
+    # generate apidocs:
+    Swagger(app)
 
     return app
