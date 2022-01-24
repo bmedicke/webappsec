@@ -307,7 +307,7 @@ Cross reference of endpoints with functions that can change the database:
 
 **All endpoints that have the ability to change the database are POST**.
 (As far as I know only `POST` and `GET` methods are allowed in forms,
-so I am limited to these, even if it is not quite conform with REST)
+so I am limited to these for now, even if it is not quite conform with REST)
 
 ---
 
