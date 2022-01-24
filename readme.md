@@ -34,7 +34,7 @@ of this writeup.)
 
 * [x] grep for todos and fix them (`rg -i todo`)
 * [ ] write tests
-* [ ] deploy app with https
+* [ ] deploy app with https certificate
 
 # local development setup
 
