@@ -51,6 +51,11 @@ pip install -r requirements.txt # install dependencies.
 # optional:
 docker-compose up -d # start docker-compose services in background.
 ```
+See [.flaskenv](https://github.com/bmedicke/MCS3_WEB_seminar_paper/blob/main/.flaskenv) for configuration options
+including the bound network interface and port as well as the secret that is used for signing session cookies.
+By default the development server will run at: [0.0.0.0:7701](http://0.0.0.0:7701).
+
+---
 
 The following docker-compose services are available:
 
