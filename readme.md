@@ -83,13 +83,23 @@ The following docker-compose services are available:
  * [**adminer** (localhost:7780)](http://localhost:7780)
      * web-base database manager/GUI
 
-## Flask app
+## starting the app
+
+The app uses a [SQLite](https://www.sqlite.org/index.html) (file-based) database for storing user profiles and messages.
+Before starting the app the database schema has to be used to create the database:
 
 ```sh
 flask init-db # apply db schema.
 sqlitebrowser instance/flask-api.sqlite
-flask run # see .flaskenv for envvars.
+flask run # see .flaskenv and .env for environment variables.
 ```
+
+To check if configuration changes took affect you can run `flask read-config`:
+ 
+<br>
+
+![image](https://user-images.githubusercontent.com/173962/150776298-8046308a-916a-4a41-9d82-a51abcfe10d2.png)
+> abbreaviated output from `flask read-config`
 
 # used libraries
 
