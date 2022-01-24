@@ -661,6 +661,9 @@ SUM:                            14            177            156            530
 
 GitHub provides several security and analysis features that should be enabled:
 
+The Dependabot security updates are a great alternative to the Node-only
+`npm audit`.
+
 ![image](https://user-images.githubusercontent.com/173962/150846032-16a77314-497b-47f4-ab98-8374a11bf56a.png)
 > GitHub Security Checks
 
