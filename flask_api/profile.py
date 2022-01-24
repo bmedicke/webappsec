@@ -16,10 +16,6 @@ import os
 
 blueprint = Blueprint("profile", __name__)
 
-# TODO: allow user to delete the profile
-# TODO: allow user to change the password
-
-
 def profile_pic(basename):
     """
     returns relative path to profile picture

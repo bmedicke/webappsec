@@ -5,7 +5,6 @@ import os
 import pprint
 
 
-# TODO test config?
 def create_app(test_config=None):
     """
     application factory function for the Flask app.

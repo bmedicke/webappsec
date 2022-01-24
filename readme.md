@@ -13,8 +13,8 @@
 
 # TODO
 
-* [ ] finish tutorial
-* [ ] `ri todo`
+* [x] `rg -i todo`
+* [ ] write tests
 
 **things to mention**
 
