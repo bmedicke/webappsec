@@ -100,7 +100,7 @@ flask run # see .flaskenv and .env for environment variables.
 ```
 
 To check if configuration changes took affect you can run `flask read-config`:
- 
+
 <br>
 
 ![image](https://user-images.githubusercontent.com/173962/150776298-8046308a-916a-4a41-9d82-a51abcfe10d2.png)
@@ -108,37 +108,54 @@ To check if configuration changes took affect you can run `flask read-config`:
 
 # used libraries
 
-* tailwind
-    * utility-class based styling
-* flask, fastapi, connexion
-    * the libraries to compare
-* flask-wtf
-    * flask wtforms integration (with csrf protection)
-    * https://testdriven.io/blog/csrf-flask/#how-to-prevent-csrf
-* python-dotenv
-    * for setting environment variables from `.env` files
-* sqlalchemy
-    * object relational mapper
-* psycopg[pool,binary] (versions 3) and psycopg2-binary (version 2)
-    * Postres adapter (for notify/listen evens)
-* black
-    * code formatter
-    * `black -l79 **/*.py`
-* ptpython, ipython
-    * for proper code completion in breakpoints/repl
-* bcrypt
-    * salt and hashing
+* [Flask](https://flask.palletsprojects.com/)
+    * relatively unopinionated Python web microframework
+    * there is a default templating engine but it can be changed
+    * as a microframework it aims to be simple (no ORM) but extensible
+* [flask-wtf](https://flask-wtf.readthedocs.io/)
+    * integration between [WTForms](https://wtforms.readthedocs.io) and Flask
+    * provides CSRF (Cross-Site-Request-Forgery) protection
+        * can be used without WTForms (as in this project)
+* [bcrypt](https://github.com/pyca/bcrypt/)
+    * password salting and hashing
         * *security note: bcrypt truncates passwords to 72 bytes*
-* click
-    * command line parsing
+    * no longer used (switched to flask-wtf)
+* [python-dotenv](https://github.com/theskumar/python-dotenv)
+    * for setting environment variables in Python from dotfiles
+    * can be used standalone but also acts as Flask extension when imported into a Flask app:
+        * automatically parses `.env` and `.flaskenv`
+* [click](https://click.palletsprojects.com/)
+    * library for command line parsing
+    * can be used standalone but also acts as Flask extension when imported into a Flask app:
+    * used for extending Flask with the custom CLI commands:
+        * init_db_cli
+        * gen_secret_key
+        * read_config
+* [SQLAlchemy](https://www.sqlalchemy.org/)
+    * object relational mapper
+    * supports a wide range of databases
+    * not yet used in `main` branch
+* [psycopg\[pool,binary\]](https://www.psycopg.org/) (versions 3) and psycopg2-binary (version 2)
+    * Postgres adapter (for notify/listen events)
+    * not yet used in `main` branch
+* [black](https://github.com/psf/black)
+    * highly opinionated Python code formatter
+    * code style for this project: `black -l79 **/*.py`
+        * all defaults except reduce maximum linewidth to 79
+* [ptpython](https://github.com/prompt-toolkit/ptpython), [ipython](https://ironpython.net/)
+    * ptpython is used for debugging:
+      * for proper code completion in the breakpoints REPL
+    * ptpython requires the (nonstandard) IronPython runtime
+* [Tailwind CSS](https://tailwindcss.com/)
+    * Tailwind provides utility-class based styling
 
 ---
 
-other interesting libs to consider:
+other interesting libraries to consider:
 
-* https://github.com/flasgger/flasgger
-* https://flask-sqlalchemy.palletsprojects.com/
-* flask-login (session handling)
+* [flasgger](https://github.com/flasgger/flasgger)
+* [flask-sqlalchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)
+* [flask-login](https://flask-login.readthedocs.io/en/latest/) for session handling
 
 # the chat app
 
