@@ -5,8 +5,8 @@ chat-app with profile function that can be integrated in a canvas-based
 multiplayer game.
 Since the game is still very much work in progress I have focused on creating a
 web-app with the corresponding functionality.
-(See [GitHub version](https://github.com/bmedicke/MCS3_WEB_seminar_paper)
-of this writeup.)
+(See the [GitHub version](https://github.com/bmedicke/MCS3_WEB_seminar_paper)
+of this writeup. Highly recommended!)
 
 ![image](https://user-images.githubusercontent.com/173962/150825414-33777ed8-46f0-4a0f-a1d4-9c1783b9b958.png)
 > landing page for logged-in users
@@ -30,9 +30,9 @@ of this writeup.)
     * [auth](#auth)
     * [profile](#profile)
     * [message](#message)
-  * [statistics](#statistics)
-* [things to mention](#things-to-mention)
-* [resources](#resources)
+  * [analysis](#analysis)
+  * [deployment](#deployment)
+* [useful resources](#useful-resources)
 
 <!-- vim-markdown-toc -->
 
@@ -531,7 +531,7 @@ has to be added to each form. The value of the token can be be used
 in Jinja with `{{ csrf_token }}`, `flask_wtf` populates this variable automatically.
 
 When receiving a form this value is expected, otherwise the request will
-not be aborted with an error (400).
+be aborted with an error (400).
 
 As an example here is part of the `index.html`:
 
@@ -601,7 +601,9 @@ Session data is a good example of data that can be stored in this object.
 (See [auth](#auth) section)
 
 It also reduces the number of variables you have to pass around and improves
-readability and maintainability.
+readability and maintainability (which in turn is an important part of writing secure code).
+
+There are other thread-locals, among them `current_app`, which is used in this app as well.
 
 ### auth
 
@@ -609,15 +611,27 @@ readability and maintainability.
 
 ### profile
 
-* thread local objects (for thread safety) and notes about security
-    * flask protects against XSS. (via flask itself and jinja2)
-        * https://flask.palletsprojects.com/en/1.0.x/advanced_foreword/
-* try injections: https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/SQLite%20Injection.md
-* [ ] jinja2 template
+> Flask protects you against one of the most common security problems of
+> modern web applications: cross-site scripting (XSS). Unless you deliberately
+> mark insecure HTML as secure, Flask and the underlying Jinja2 template
+> engine have you covered. But there are many more ways to cause security
+> problems.
+>
+> **via:** https://flask.palletsprojects.com/en/1.0.x/advanced_foreword/
+
+Since the profile page allows users to write a long string
+and save it to their profile (the about field/biography)
+it is a self-evident target for injection attacks.
+
+
+
+I have used SQL injections strings from
+[PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/SQLite%20Injection.md)
+.
 
 ### message
 
-## statistics
+## analysis
 
 ```sh
 root::kali:flask_api:# cloc *.py **/*.html
@@ -637,7 +651,7 @@ SUM:                            14            177            156            530
 
 ```
 
-# things to mention
+## deployment
 
 * [ ] werkzeug only in development, not production (https://werkzeug.palletsprojects.com/en/2.0.x/serving/)
     * https://flask.palletsprojects.com/en/2.0.x/tutorial/deploy/
@@ -690,7 +704,7 @@ SUM:                            14            177            156            530
 * [ ] mention JWT?
 * [ ] two-factor login?
 
-# resources
+# useful resources
 
 * https://github.blog/2021-12-06-write-more-secure-code-owasp-top-10-proactive-controls/
 
