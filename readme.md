@@ -671,6 +671,9 @@ activating the above option):
 ![image](https://user-images.githubusercontent.com/173962/150846489-ba7f768d-79b5-4304-a71e-03e7f0a498c1.png)
 > Pull request to update dependency
 
+![image](https://user-images.githubusercontent.com/173962/150847263-58d32059-f982-4425-a5a6-43788806b17e.png)
+> CLI notification from the GitHub server when pushing
+
 ## deployment
 
 * [ ] werkzeug only in development, not production (https://werkzeug.palletsprojects.com/en/2.0.x/serving/)
