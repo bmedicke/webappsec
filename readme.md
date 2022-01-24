@@ -8,7 +8,7 @@ web-app with the corresponding functionality.
 (See [GitHub version](https://github.com/bmedicke/MCS3_WEB_seminar_paper)
 of this writeup.)
 
-![image](https://user-images.githubusercontent.com/173962/150765330-c4e8e70e-8386-4379-a71a-0ec44c814a83.png)
+![image](https://user-images.githubusercontent.com/173962/150825414-33777ed8-46f0-4a0f-a1d4-9c1783b9b958.png)
 > landing page for logged-in users
 
 ## table of contents
