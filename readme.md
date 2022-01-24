@@ -623,11 +623,15 @@ Since the profile page allows users to write a long string
 and save it to their profile (the about field/biography)
 it is a self-evident target for injection attacks.
 
+![image](https://user-images.githubusercontent.com/173962/150844630-f64c4daa-206e-4e1a-a012-420c1934d895.png)
+> enumerating strings over the about field
 
+![image](https://user-images.githubusercontent.com/173962/150844990-3522289d-ebc7-4501-a905-b273738b042c.png)
+> not vulnerable to injection attacks
 
 I have used SQL injections strings from
 [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/SQLite%20Injection.md)
-.
+and [Injecting SQLite database based application](https://www.exploit-db.com/docs/english/41397-injecting-sqlite-database-based-applications.pdf) by Manish Kishan Tanwar.
 
 ### message
 
