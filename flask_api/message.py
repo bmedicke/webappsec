@@ -60,7 +60,7 @@ def index():
         db = get_db()
         messages = db.execute(
             """
-            SELECT author_id, created, username, avatar, text
+            SELECT message.id, author_id, created, username, avatar, text
             FROM message
             JOIN user
             ON message.author_id = user.id
@@ -83,3 +83,47 @@ def create():
         return message_post()
 
     return render_template("message/create.html")
+
+
+@blueprint.route("/delete/<int:id>", methods=("POST",))
+@login_required
+def delete(id):
+    """
+    deletes a message (if it exists and is owned by user)
+
+    redirects to index
+    """
+    error = None
+    db = get_db()
+
+    message_author = db.execute(
+        """
+        SELECT *
+        FROM message
+        WHERE id = ?
+        """,
+        (id,),
+    ).fetchone()
+
+    # invalid message id:
+    if message_author is None:
+        error = "denied"
+
+    else:
+        # logged in user did not author message:
+        if g.user["id"] != message_author["author_id"]:
+            error = "denied"
+
+    if error:
+        flash(error)
+    else:
+        db.execute(
+            """
+            DELETE FROM message
+            WHERE id = ?
+            """,
+            (id,),
+        )
+        db.commit()
+
+    return redirect(url_for("index"))

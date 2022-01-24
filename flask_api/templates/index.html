@@ -18,6 +18,12 @@
             <span class="ml-2 font-bold text-sky-700 hover:text-gray-700">{{ message.username }}</span>
         </a>
         <span>{{ message.text }}</span>
+        {% if g.user.id == message.author_id %}
+          <form class="inline" action="/delete/{{message.id}}" method="post" accept-charset="utf-8">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button type="submit" class="text-red-300">x</button>
+          </form>
+        {% endif %}
     </li>
 {% endfor %}
 </ul>
