@@ -6,25 +6,27 @@
 
 {% block content %}
 
-<form method="post" accept-charset="utf-8" class="p-3">
+<form method="post" accept-charset="utf-8" class="p-2">
     <div>
         <label for="about" class="font-medium">about</label>
         <br>
-        <textarea name="about" id="about" class="p-3 w-full bg-sky-50">{{ g.user.about }}</textarea>
+        <textarea name="about" id="about" class="w-full bg-sky-50">{{ g.user.about }}</textarea>
     </div>
     <div>
-        <label for="avatar">profile pic</label>
+      <label for="avatar" class="font-medium">profile pic</label><br>
 
+<span class="p-1 bg-sky-50 block">
 {% for pic in profile_pics %}
-    <label class="flex bg-sky-50">
+    <label class="inline-block">
         <input type="radio" name="avatar" id="avatar" value="{{ pic }}"
         {{ "checked" if pic == g.user.avatar }}
         class=""
         required>
         <img src="{{ profile_pic(pic) }}"
-         class="m-2 avatar" />
+         class="m-1 avatar" />
     </label>
 {% endfor %}
+</span>
 
 
     </div>

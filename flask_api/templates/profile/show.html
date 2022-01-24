@@ -6,19 +6,19 @@
 
 {% block content %}
 
-<ul class="p-3">
+<ul class="p-2">
     <li class="font-medium">user</li>
-    <li class="bg-sky-50 pl-2">{{ g.user['username'] }}</li>
+    <li class="bg-sky-50">{{ g.user['username'] }}</li>
     <li class="font-medium">profile pic</li>
     <li>
         <img src="{{ profile_pic(g.user.avatar) }}" class="avatar ml-2" alt="avatar"/>
     </li>
     <li class="font-medium">about</li>
-    <li class="bg-sky-50 pl-2">{{ g.user['about'] }}</li>
+    <li class="bg-sky-50">{{ g.user['about'] }}</li>
     <li class="italic mt-3">your profile is currently {{ "private" if g.user.private else "public"}} </li>
 </ul>
 
-<ul class="p-3">
+<ul class="p-2">
     <li><a href="/profile/edit"
            class="text-sky-700 hover:text-gray-700 p2" >
            edit profile</a></li>
