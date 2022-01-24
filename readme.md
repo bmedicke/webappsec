@@ -26,6 +26,10 @@ of this writeup.)
     * [list of endpoints that write to the db](#list-of-endpoints-that-write-to-the-db)
   * [structure of the app](#structure-of-the-app)
     * [dunder init](#dunder-init)
+    * [database](#database)
+    * [auth](#auth)
+    * [profile](#profile)
+    * [message](#message)
   * [statistics](#statistics)
 * [things to mention](#things-to-mention)
 * [resources](#resources)
@@ -39,6 +43,7 @@ of this writeup.)
 * [ ] deploy app with https certificate
 * [ ] change docstrings to flasgger format
 * [ ] switch to PostGres
+* [ ] use type hinting
 
 # local development setup
 
@@ -189,7 +194,12 @@ The old schema was based on a private messaging function. It also stored salt an
 > old schema (PostGres)
 
 I've since changed my mind and switched to an exclusively, global chat
-(planned to be a proximity-based chat in the game)
+(planned to be a proximity-based chat in the game).
+
+My plan is to start out with SQLite and maybe switch to PostGres later
+(SQLite is purely concurrent and might be too slow for larger apps but
+should be fine as a starting point).
+
 
 ![image](https://user-images.githubusercontent.com/173962/150687869-9d1d31de-7728-43e8-ba88-9b2e3a3328ab.png)
 > current schema (SQLite)
@@ -521,7 +531,7 @@ has to be added to each form. The value of the token can be be used
 in Jinja with `{{ csrf_token }}`, `flask_wtf` populates this variable automatically.
 
 When receiving a form this value is expected, otherwise the request will
-not be performed.
+not be aborted with an error (400).
 
 As an example here is part of the `index.html`:
 
@@ -551,6 +561,27 @@ And here a screenshot when creating a request without that token:
 ![image](https://user-images.githubusercontent.com/173962/150823470-fac397b5-4f53-43a3-bc20-f4e4656b1964.png)
 > missing CSRF token
 
+*security note*: FlaskWTF uses CSRF opt-out for endpoints (all
+endpoints are protected, secure by default). It is possible to exempt
+endpoints from CSRF protection with the `@csrf.exempt` decorator.
+This is not recommended.
+
+### database
+
+### auth
+
+* [ ] `@login_required` decorator
+
+### profile
+
+* thread local objects (for thread safety) and notes about security
+    * flask protects against XSS. (via flask itself and jinja2)
+        * https://flask.palletsprojects.com/en/1.0.x/advanced_foreword/
+* try injections: https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/SQLite%20Injection.md
+* [ ] jinja2 template
+
+### message
+
 ## statistics
 
 ```sh
@@ -571,25 +602,10 @@ SUM:                            14            177            156            530
 
 ```
 
-* thread local objects (for thread safety) and notes about security
-    * flask protects against XSS. (via flask itself and jinja2)
-        * https://flask.palletsprojects.com/en/1.0.x/advanced_foreword/
-* *security note*: use type hinting
-* try injections: https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/SQLite%20Injection.md
-
----
-
-* start out with `sqlite`, maybe switch to postgres later
-    * sqlite is purely concurrent and might be too slow for larger apps
-* the `flask-api` directory contains a python package (`__init__.py`) for the app with the application factory (`create_app()`)
-
-
-
 # things to mention
 
 * [ ] werkzeug only in development, not production (https://werkzeug.palletsprojects.com/en/2.0.x/serving/)
     * https://flask.palletsprojects.com/en/2.0.x/tutorial/deploy/
-* [ ] application factory
 * [ ] `app.config` options
     * [ ] `SECRET_KEY` https://flask.palletsprojects.com/en/2.0.x/config/#SECRET_KEY
         * set via env vars or `config.py`
@@ -611,27 +627,18 @@ SUM:                            14            177            156            530
 ```
 
 * [ ] debug mode (werkzeug), production mode (proper wsgi server)
-* [ ] sqlite is slow because writes happen concurrently
 * [ ] connections are tied to the request (closed before sending it)
 * [ ] `g` is a global (to the request) object, stores state during request only
-* [ ] `@login_required` decorator
 * [ ] blueprints and views (https://flask.palletsprojects.com/en/2.0.x/tutorial/views/)
 * [ ] `from werkzeug.security import check_password_hash, generate_password_hash`
     * https://werkzeug.palletsprojects.com/en/2.0.x/utils/#werkzeug.security.generate_password_hash
     * uses `pbkdf2:sha256` (https://en.wikipedia.org/wiki/PBKDF2)
     * uses salt length of `16`
-* [ ] `GET` requests should not change the database
-* [ ] `old_endpoints.py` (user profiles escaped?)
-* [ ] CSRF tokens (`__init__.py` and `.html`s)
-* [ ] `/user/<int:id>` endpoint (with backup `escape()`)
 * [ ] git hooks, github webhooks
 * [ ] linten (black, pyflakes) & static analysis
 * [ ] commits durchgehen, etwicklung der app
 * [ ] https://dependencytrack.org/
 * [ ] semgrep
-* [ ] dotenv
-* [ ] gitignore
-* [ ] externalized configuration
 * [ ] [SAST](https://owasp.org/www-community/Source_Code_Analysis_Tools)
     * https://cheatsheetseries.owasp.org/IndexTopTen.html
 * [ ] escaping/quoting
@@ -640,7 +647,6 @@ SUM:                            14            177            156            530
 * [ ] set secure-ish session cookie flags
 * [ ] `ripgrep`
 * [ ] kein npm-audit für python github dependabot
-* [ ] jinja2 template
 * [ ] check OWASP top 10
 * [ ] check if libs are outdated (vuln scanner?)
 * [ ] check out https://pythonhosted.org/Flask-Security/
@@ -648,7 +654,6 @@ SUM:                            14            177            156            530
 * [ ] session lifetime?
 * [ ] mention JWT?
 * [ ] two-factor login?
-* [ ] write some tests
 
 # resources
 
