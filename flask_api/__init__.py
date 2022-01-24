@@ -61,7 +61,7 @@ def create_app(test_config=None):
     csrf = CSRFProtect()
     csrf.init_app(app)
 
-    if app.debug:
-        pprint.pp(app.config)
+    # if app.debug:
+    #     pprint.pp(app.config)
 
     return app
