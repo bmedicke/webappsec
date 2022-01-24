@@ -439,6 +439,17 @@ The following ASCII diagram shows the project structure:
 * `instance` is created by `flask init-db` and contains the sqlite database (`flask-api.sqlite`)
 * `.env` and `.flaskenv` are parsed by the app and used for environment variables
 
+<br>
+
+* *security note: the `.flaskenv` file should not be commited if there are
+any secrets stored in it*
+    * you sould use the `.env` file for secrets (which is in `.gitignore`)
+* *security note: when returning HTML (the default) user provided values
+must be `escape()`d to prevent injections*
+    * unsafe: `http://localhost:7701/i/<body onload='alert("this is bad");'>`
+    * safe: `http://localhost:7701/u/<body onload='alert("this is bad");'>`
+    * Jinja templates do this automatically (but you can explicitly disable this behaviour)
+
 ---
 
 Abbreviated `__init__.py`, the starting point of the app:
@@ -529,13 +540,15 @@ As an example here is part of the `index.html`:
 <!-- ... -->
 ```
 
+Populated `csrf_token` variable in a browser:
+
 ![image](https://user-images.githubusercontent.com/173962/150823071-697ef323-a8ae-4f40-97d8-5557461e6a0a.png)
 > the same form rendered in a browser
 
 And here a screenshot when creating a request without that token:
 
 ![image](https://user-images.githubusercontent.com/173962/150823470-fac397b5-4f53-43a3-bc20-f4e4656b1964.png)
-> 400 bad request
+> missing CSRF token
 
 ## statistics
 
@@ -556,15 +569,7 @@ SUM:                            14            177            156            530
 -------------------------------------------------------------------------------
 
 ```
-* [flask (localhost:7701)](http://localhost:7701)
-* *security note: the `.flaskenv` file should not be commited if there are
-any secrets stored in it*
-    * you could use the `.env` file for secrets
-* *security note: when returning HTML (the default) user provided values
-must be `escape()`d to prevent injections*
-    * unsafe: `http://localhost:7701/i/<body onload='alert("this is bad");'>`
-    * safe: `http://localhost:7701/u/<body onload='alert("this is bad");'>`
-    * Jinja templates do this automatically
+
 * thread local objects (for thread safety) and notes about security
     * flask protects against XSS. (via flask itself and jinja2)
         * https://flask.palletsprojects.com/en/1.0.x/advanced_foreword/
