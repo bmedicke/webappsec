@@ -99,7 +99,7 @@ def user(id):
     """
     shows profile of user by id (if set to public)
 
-    return html
+    returns html
     """
     db = get_db()
     user = db.execute(
