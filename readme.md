@@ -52,8 +52,16 @@ pip install -r requirements.txt # install dependencies.
 docker-compose up -d # start docker-compose services in background.
 ```
 See [.flaskenv](https://github.com/bmedicke/MCS3_WEB_seminar_paper/blob/main/.flaskenv) for configuration options
-including the bound network interface and port as well as the secret that is used for signing session cookies.
-By default the development server will run at: [0.0.0.0:7701](http://0.0.0.0:7701).
+including the bound network interface and port. By default the development server will run at: [0.0.0.0:7701](http://0.0.0.0:7701).
+
+**Security note:** Note, that the secret, that is used for signing session cookies, defaults to `dev`
+if the environment variable `SECRET_KEY` is not set. There are three ways to set this key when deploying:
+
+* via `export SECRET_KEY=xxxx` before starting flask
+* via `SECRET_KEY=xxxx` in `.env` (recommended)
+* via `SECRET_KEY=xxxx` in `.flaskenv` (not recommended since this file is commited)
+
+Both `.flaskenv` and `.env` are automatically parsed.
 
 ---
 
