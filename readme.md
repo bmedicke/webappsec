@@ -526,7 +526,8 @@ endpoints are imported and registered with the app.
 `CSRFProtect` is imported from the `flask_wtf` library (which is
 only used for the CSRF protection).
 Calling `csrf.init_app(app)` enables CSRF protection globally
-(for `POST` requests) by registering the Flask extension.
+(for `POST`, `DELETE`, `PATCH` and `PUT` requests)
+by registering the Flask extension.
 
 Since I use my own forms (as opposed to WTForms) a hidden `csrf_token`
 has to be added to each form. The value of the token can be be used
@@ -936,6 +937,9 @@ SUM:                            14            177            156            530
 -------------------------------------------------------------------------------
 ```
 
+Additionally the source code is automatically styled with `black` and linted
+with `pyflakes`.
+
 ## workflow
 
 Next to local pre/post-commit hooks there are also serverside solutions.
@@ -964,15 +968,18 @@ Interacting with the GitHub servers via `git` also provides warnings:
 
 The following points should be considered when deploying the app to production:
 
-* [ ] werkzeug (the shipped WSGI server) is to be only used during development, not production (https://werkzeug.palletsprojects.com/en/2.0.x/serving/)
+* [ ] werkzeug (the shipped WSGI server) is to be used only during development, not production 
+    * [gunicorn](https://gunicorn.org/) can be used instead, among others
+    * https://werkzeug.palletsprojects.com/en/2.0.x/serving/
     * https://flask.palletsprojects.com/en/2.0.x/tutorial/deploy/
-* [ ] `app.config` options
+* [ ] adjusting the `app.config` options
     * [ ] `SECRET_KEY` https://flask.palletsprojects.com/en/2.0.x/config/#SECRET_KEY
-        * set via env vars or `config.py`
+        * set via env vars or `.env`
         * used for signing session cookies
-    * [ ] `PERMANENT_SESSION_LIFETIME` 31 days
-    * [ ] `SESSION_COOKIE_SECURE` and `SESSION_COOKIE_SAMESITE` False?
-    * [ ] `WTF_*`
+    * [ ] `PERMANENT_SESSION_LIFETIME`
+        * the default is 31 days
+    * [ ] `SESSION_COOKIE_SECURE` and `SESSION_COOKIE_SAMESITE` are `False` by default!
+    * [ ] adjust `WTF_*` options if required
 
 ```python
  {
@@ -986,28 +993,17 @@ The following points should be considered when deploying the app to production:
  }
 ```
 
-* [ ] debug mode (werkzeug), production mode (proper wsgi server)
-* [ ] connections are tied to the request (closed before sending it)
-* [ ] `g` is a global (to the request) object, stores state during request only
-* [ ] blueprints and views (https://flask.palletsprojects.com/en/2.0.x/tutorial/views/)
-* [ ] `from werkzeug.security import check_password_hash, generate_password_hash`
+* [ ] the app uses `from werkzeug.security import check_password_hash, generate_password_hash`
+    * uses default algorithm `pbkdf2:sha256` (https://en.wikipedia.org/wiki/PBKDF2)
+    * uses default salt length of `16`
     * https://werkzeug.palletsprojects.com/en/2.0.x/utils/#werkzeug.security.generate_password_hash
-    * uses `pbkdf2:sha256` (https://en.wikipedia.org/wiki/PBKDF2)
-    * uses salt length of `16`
-* [ ] git hooks, github webhooks
-* [ ] linten (black, pyflakes) & static analysis
-* [ ] commits durchgehen, etwicklung der app
-* [ ] https://dependencytrack.org/
+* [ ] additional git hooks and GitHub webhooks
 * [ ] semgrep
-* [ ] [SAST](https://owasp.org/www-community/Source_Code_Analysis_Tools)
-    * https://cheatsheetseries.owasp.org/IndexTopTen.html
-* [ ] http header
+* [ ] set security HTTP header
 * [ ] set session cookie flags
-* [ ] check OWASP top 10
-* [ ] check out https://pythonhosted.org/Flask-Security/
-* [ ] check out https://github.com/FHPythonUtils/PyTaintX
-* [ ] adjust the session lifetime
 * [ ] consider JWT
+    * more useful for microservices
+    * harder to get correct than sessions
 * [ ] consider two-factor authentification
 
 # useful resources
