@@ -13,31 +13,8 @@
 
 # TODO
 
-* [x] add docstrings to functions
-    * [x] init
-    * [x] database
-    * [x] auth
-    * [x] profile
-    * [x] message
-* [x] read each line again and add comments
-    * [x] init
-    * [x] database
-    * [x] auth
-    * [x] profile
-    * [x] message
-* [ ] style it!
-* [ ] check OWASP top 10
-* [ ] mention linting (black, pyflakes)
-* [ ] check if libs are outdated (vuln scanner?)
-* [ ] check out https://pythonhosted.org/Flask-Security/
-* [ ] check out https://github.com/FHPythonUtils/PyTaintX
 * [ ] finish tutorial
-* [ ] write some tests
 * [ ] `ri todo`
-* [ ] visualize sqlite schema
-* [ ] session lifetime?
-* [ ] JWT?
-* [ ] two-factor login?
 
 **things to mention**
 
@@ -79,7 +56,7 @@
 * [ ] CSRF tokens (`__init__.py` and `.html`s)
 * [ ] `/user/<int:id>` endpoint (with backup `escape()`)
 * [ ] git hooks, github webhooks
-* [ ] linten & static analysis
+* [ ] linten (black, pyflakes) & static analysis
 * [ ] commits durchgehen, etwicklung der app
 * [ ] https://dependencytrack.org/
 * [ ] semgrep
@@ -95,6 +72,14 @@
 * [ ] `ripgrep`
 * [ ] kein npm-audit für python github dependabot
 * [ ] jinja2 template
+* [ ] check OWASP top 10
+* [ ] check if libs are outdated (vuln scanner?)
+* [ ] check out https://pythonhosted.org/Flask-Security/
+* [ ] check out https://github.com/FHPythonUtils/PyTaintX
+* [ ] session lifetime?
+* [ ] mention JWT?
+* [ ] two-factor login?
+* [ ] write some tests
 
 
 **list of post endpoints**
