@@ -1,6 +1,7 @@
 from flask import current_app, g
 from flask.cli import with_appcontext
 import click
+import secrets
 import sqlite3
 
 
@@ -12,6 +13,7 @@ def init_app(app):
     app.teardown_appcontext(close_db)
     # add click cli command to flask command:
     app.cli.add_command(init_db_cli)
+    app.cli.add_command(gen_secret_key)
 
 
 def init_db():
@@ -33,6 +35,15 @@ def init_db_cli():
 
     init_db()
     click.echo("database initialized")
+
+@click.command("create-secret-key")  # called via: flask create-secret-key
+@with_appcontext
+def gen_secret_key():
+    """
+    creates a value that can be used for the SECRET_KEY environment variable
+    """
+
+    click.echo(secrets.token_urlsafe(32))
 
 
 def get_db():
