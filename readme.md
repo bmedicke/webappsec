@@ -815,6 +815,86 @@ if avatar not in get_profile_pics():
 
 ### message
 
+The heart of the application.
+
+The following is the part of the index Jinja template that displays
+all messages:
+
+```python
+{% for message in messages %}
+    <li class="font-mono font-thin mt-1">
+        <span class="ml-2">{{ message.created }}</span>
+        <a href="/user/{{ message.author_id }}" 
+           class="">
+            <img src="{{ profile_pic(message.avatar) }}"
+                class="avatar inline ml-2"
+                alt="avatar" />
+            <span class="ml-2 font-bold text-sky-700 hover:text-gray-700">{{ message.username }}</span>
+        </a>
+        <span>{{ message.text }}</span>
+        {% if g.user.id == message.author_id %}
+          <form class="inline" action="/delete/{{message.id}}" method="post" accept-charset="utf-8">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button type="submit" class="text-red-300">x</button>
+          </form>
+        {% endif %}
+    </li>
+{% endfor %}
+```
+
+If the logged in user is the same as the author of a message,
+a red cross will be displayed that allows users to delete their
+own messages. Of course this is only client side
+protection. Here is the corresponding server side check in `message.py`:
+
+```python
+@blueprint.route("/delete/<int:id>", methods=("POST",))
+@login_required
+def delete(id):
+    """
+    deletes a message (if it exists and is owned by user)
+
+    redirects to index
+    """
+    error = None
+    db = get_db()
+
+    message_author = db.execute(
+        """
+        SELECT author_id
+        FROM message
+        WHERE id = ?
+        """,
+        (id,),
+    ).fetchone()
+
+    # invalid message id:
+    if message_author is None:
+        error = "denied"
+
+    else:
+        # logged in user did not author message:
+        if g.user["id"] != message_author["author_id"]:
+            error = "denied"
+
+    if error:
+        flash(error)
+    else:
+        db.execute(
+            """
+            DELETE FROM message
+            WHERE id = ?
+            """,
+            (id,),
+        )
+        db.commit()
+
+    return redirect(url_for("message.index"))
+```
+
+The variable endpoint is secured by limiting the datatype of `id` to an
+integer.
+
 ## analysis
 
 ```sh
