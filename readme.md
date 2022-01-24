@@ -895,7 +895,12 @@ def delete(id):
 The variable endpoint is secured by limiting the datatype of `id` to an
 integer.
 
+Same goes for the chat bar itself that is greyed out (client side)
+and protected by server side checks.
+
 ## analysis
+
+Lines of code:
 
 ```sh
 root::kali:flask_api:# cloc *.py **/*.html
@@ -912,8 +917,9 @@ HTML                             8             54              0            244
 -------------------------------------------------------------------------------
 SUM:                            14            177            156            530
 -------------------------------------------------------------------------------
-
 ```
+
+
 
 ## workflow
 
@@ -943,7 +949,7 @@ Interacting with the GitHub servers via `git` also provides warnings:
 
 The following points should be considered when deploying the app to production:
 
-* [ ] werkzeug only in development, not production (https://werkzeug.palletsprojects.com/en/2.0.x/serving/)
+* [ ] werkzeug (the shipped WSGI server) is to be only used during development, not production (https://werkzeug.palletsprojects.com/en/2.0.x/serving/)
     * https://flask.palletsprojects.com/en/2.0.x/tutorial/deploy/
 * [ ] `app.config` options
     * [ ] `SECRET_KEY` https://flask.palletsprojects.com/en/2.0.x/config/#SECRET_KEY
