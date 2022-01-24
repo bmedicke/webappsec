@@ -386,39 +386,153 @@ Note the following:
 
 ## structure of the app
 
-The following ASCII diagram shows the structure of the app:
+The following ASCII diagram shows the project structure:
 
 ```sh
-(env) root::kali:flask_api:# tree                                                   0 [main]
-.
-├── auth.py
-├── database.py
-├── __init__.py
-├── message.py
-├── profile.py
-├── schema.sql
-├── static
-│   ├── profiles
-│   │   ├── 0000.png
-│   │   ├── 0001.png
-│   │   ├── 0002.png
-│   │   ├── 0003.png
-│   │   ├── 0004.png
-│   │   └── 0005.png
-│   └── style.css
-└── templates
-    ├── auth
-    │   ├── login.html
-    │   └── register.html
-    ├── base.html
-    ├── index.html
-    ├── message
-    │   └── create.html
-    └── profile
-        ├── edit.html
-        ├── show.html
-        └── user.html
+├── docker
+│   ├── ...
+├── docker-compose.yml
+├── env
+│   ├── ...
+├── flask_api
+│   ├── auth.py
+│   ├── database.py
+│   ├── __init__.py
+│   ├── message.py
+│   ├── profile.py
+│   ├── schema.sql
+│   ├── static
+│   │   ├── favicon.png
+│   │   ├── profiles
+│   │   │   ├── 0000.png
+│   │   │   ├── 0001.png
+│   │   │   ├── ...
+│   │   └── style.css
+│   └── templates
+│       ├── auth
+│       │   ├── login.html
+│       │   └── register.html
+│       ├── base.html
+│       ├── index.html
+│       ├── message
+│       │   └── create.html
+│       └── profile
+│           ├── edit.html
+│           ├── show.html
+│           └── user.html
+├── instance
+│   └── flask-api.sqlite
+├── readme.md
+├── requirements.txt
+├── .gitignore
+├── .env
+└── .flaskenv
 ```
+
+* `docker` and `docker-compose.yml` are used for storing docker data (postgres) and the service file respectively
+* `env` is the virtual environment that is used to store installed libraries (instead of the global store)
+* `__init__.py` is the starting point of the Flask app and marks the encompassing folder as a Python module
+  * this file imports the other scripts
+* `schema.sql` is used by `flask init-db` to setup the database (see [database schema](#database-schema))
+* `static` files are served directly
+* `templates` contains the served HTML/Jinja2 templates, `base.html` is inherited from by the other templates
+* `instance` is created by `flask init-db` and contains the sqlite database (`flask-api.sqlite`)
+* `.env` and `.flaskenv` are parsed by the app and used for environment variables
+
+---
+
+Abbreviated `__init__.py`, the starting point of the app:
+```sh
+from dotenv import load_dotenv  # automatically load .flaskenv
+from flask import Flask
+from flasgger import Swagger
+from flask_wtf.csrf import CSRFProtect
+import os
+
+def create_app(test_config=None):
+    """
+    application factory function for the Flask app.
+
+    returns a Flask object
+    """
+
+    # read secret key from env vars when deploying,
+    # used for signing session cookies:
+    SECRET_KEY = os.environ.get("SECRET_KEY", "dev")
+
+    # name app after module name:
+    app = Flask(__name__, instance_relative_config=True)
+
+    app.config.from_mapping(
+        SECRET_KEY=SECRET_KEY,
+        DATABASE=os.path.join(app.instance_path, "flask-api.sqlite"),
+    )
+
+    # ...
+
+    # views for routes are imported via blueprints:
+    from . import auth
+    from . import database
+    from . import message
+    from . import profile
+
+    # register database functions with the app (includes cli command):
+    database.init_app(app)
+
+    # register authentication blueprint (register/login/logout):
+    app.register_blueprint(auth.blueprint)
+
+    # ...
+
+    # require valid CSRF token for modifying requests:
+    csrf = CSRFProtect()
+    csrf.init_app(app)
+
+    # generate apidocs:
+    Swagger(app)
+
+    return app
+```
+
+`__init__.py` defines a single function that in turn creates the Flask
+app (factory pattern). If no `SECRET_KEY` environment variable is it
+defaults to `dev`. After the configuration is done, the blueprints for
+endpoints are imported and registered with the app.
+
+`CSRFProtect` is imported from the `flask_wtf` library (which is
+only used for the CSRF protection).
+Calling `csrf.init_app(app)` enables CSRF protection globally
+(for `POST` requests) by registering the Flask extension.
+
+Since I use my own forms (as opposed to WTForms) a hidden `csrf_token`
+has to be added to each form. The value of the token can be be used
+in Jinja with `{{ csrf_token }}`, `flask_wtf` populates this variable automatically.
+
+When receiving a form this value is expected, otherwise the request will
+not be performed.
+
+As an example here is part of the `index.html`:
+
+```html
+<!-- ... -->
+
+<form method="post" accept-charset="utf-8">
+    <input type="text" name="text"
+        id="text" value="" placeholder="{{ "write your message here"
+                           if g.user else "log in to start chatting" }}"
+        class="chatbar w-full pl-2 mt-2 font-mono
+                    {{ "bg-gray-50" if not g.user else "bg-sky-50" }}"
+        required {{ "disabled" if not g.user }}>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+</form>
+
+<!-- ... -->
+```
+
+
+
+And here a screenshot when creating a request without that token:
+
 
 ## statistics
 
