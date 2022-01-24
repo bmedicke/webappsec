@@ -1,7 +1,12 @@
 # Web Application Security
 
-For my WEB (web application security) seminar paper I have decided to write a chat-app with profile function that can be integrated in a canvas-based multiplayer game.
-Since the game is still very much work in progress I have focused on creating a web-app with the corresponding functionality.
+For my WEB (web application security) seminar paper I have decided to write a
+chat-app with profile function that can be integrated in a canvas-based
+multiplayer game.
+Since the game is still very much work in progress I have focused on creating a
+web-app with the corresponding functionality.
+(See [GitHub version](https://github.com/bmedicke/MCS3_WEB_seminar_paper)
+of this writeup.)
 
 ![image](https://user-images.githubusercontent.com/173962/150765330-c4e8e70e-8386-4379-a71a-0ec44c814a83.png)
 > landing page for logged-in users
