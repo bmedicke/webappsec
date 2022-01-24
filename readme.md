@@ -381,7 +381,7 @@ Note the following:
 
 * the user route will only trigger for integers in the variable part of the URL: `<int:id>`
 * I have chosen to `escape()` the input nontheless in case the endpoint is
-  edited in the future
+  edited in the future (or if there's a bug in the endpoint handling)
 * SQL queries in this app use parameterized statements (the sqlite3 library does not support prepared statements)
 
 ## structure of the app
