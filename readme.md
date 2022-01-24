@@ -645,6 +645,43 @@ def load_logged_in_user():
         )
 ```
 
+The `/login` endpoint produces the same error message no matter
+if a supplied password is wrong or the username does not exist to
+prevent leaking information to attackers:
+
+```sh
+@blueprint.route("/login", methods=("GET", "POST"))
+def login():
+    """
+    allows users to log in
+
+    returns html
+    """
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+
+        db = get_db()
+        error = None
+
+        user = db.execute(
+            """
+            SELECT *
+            FROM user
+            WHERE username = ?
+            """,
+            (username,),
+        ).fetchone()
+
+        # use same error message to not leak information:
+        if user is None:
+            error = "invalid credentials"
+        elif not check_password_hash(user["password"], password):
+            error = "invalid credentials"
+
+# ...
+```
+
 The next function is a decorator. Applying this decorator to another function
 wraps that function with new functionality: If there is no user stored in the
 `g` object (no user logged in) it will redirect to the login page.
