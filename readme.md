@@ -153,7 +153,7 @@ To check if configuration changes took affect you can run `flask read-config`:
       * for proper code completion in the breakpoints REPL
     * ptpython requires the (nonstandard) IronPython runtime
 * [flasgger](https://github.com/flasgger/flasgger)
-    * Flask extension that extracts OpenAPI specification from Flask views
+    * Flask extension that extracts [OpenAPI](https://swagger.io/specification/) specification from Flask views
     * adds an API endpoint ([/apidocs](localhost:7701/apidocs)) that serves endpoint documentation
 * [Jinja2](https://www.palletsprojects.com/p/jinja/)
     * Flask's default template engine
