@@ -99,7 +99,7 @@ To check if configuration changes took affect you can run `flask read-config`:
 <br>
 
 ![image](https://user-images.githubusercontent.com/173962/150776298-8046308a-916a-4a41-9d82-a51abcfe10d2.png)
-> abbreaviated output from `flask read-config`
+> abbreviated output from `flask read-config`
 
 # used libraries
 
