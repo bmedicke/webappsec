@@ -26,7 +26,7 @@
     <input type="text" name="text"
         id="text" value="" placeholder="{{ "write your message here"
                            if g.user else "log in to start chatting" }}"
-        class="chatbar w-full pl-2 font-mono" required
+        class="chatbar w-full pl-2 mt-2 bg-sky-50 font-mono" required
         {{ "disabled" if not g.user }}>
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 </form>
