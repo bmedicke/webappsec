@@ -20,10 +20,11 @@ of this writeup.)
   * [starting the app](#starting-the-app)
 * [used libraries](#used-libraries)
 * [the chat app](#the-chat-app)
+  * [database schema](#database-schema)
+  * [list of get endpoints](#list-of-get-endpoints)
   * [list of post endpoints](#list-of-post-endpoints)
     * [list of endpoints that write to the db](#list-of-endpoints-that-write-to-the-db)
   * [structure of the app**](#structure-of-the-app)
-  * [database schema](#database-schema)
   * [statistics](#statistics)
 * [things to mention](#things-to-mention)
 * [resources](#resources)
@@ -177,6 +178,64 @@ other interesting libraries to consider:
 
 # the chat app
 
+The following sections cover a specific aspect of the chat app each:
+
+## database schema
+
+The old schema was based on a private messaging function.
+
+![image](https://user-images.githubusercontent.com/173962/145773177-4b7a9803-14c7-43c1-ad70-7c5093fe7a5c.png)
+> old schema (PostGres)
+
+I've since changed my mind and switched to a global chat:
+
+![image](https://user-images.githubusercontent.com/173962/150687869-9d1d31de-7728-43e8-ba88-9b2e3a3328ab.png)
+> current schema (SQLite)
+
+Note the following:
+
+* the `id` fields are auto-incrementing primary keys of type `INTEGER`
+* the `message` table has an `author_id` field that is a foreign key pointing to the `id` field of the `user` table
+    * each message is owned by a user (the author)
+* `created` is a timestamp that is populated by sqlite itself via `CURRENT_TIMESTAMP`
+* `text` is of type `TEXT` and may not be null, empty messages don't make much sense
+* `username` and `password` are of type text as well and can not be null
+  * `username` is `UNIQUE`
+  * **potentially dangerous bug**: `password` was unique for some time as well
+      * This kind of bug might have been exploited by an attacker by creating accounts with
+      common passwords and checking if a server error occurs. On a server error
+      the attacker could have tried known usernames (from the chat) with the
+      identified passwords.
+      * Not in this instance though, since the stored passwords are hashed with a salt. (The field actually stores 3 things: the algorithm, the hashed password and the salt itself)
+
+---
+
+* [flask (localhost:7701)](http://localhost:7701)
+* *security note: the `.flaskenv` file should not be commited if there are
+any secrets stored in it*
+    * you could use the `.env` file for secrets
+* *security note: when returning HTML (the default) user provided values
+must be `escape()`d to prevent injections*
+    * unsafe: `http://localhost:7701/i/<body onload='alert("this is bad");'>`
+    * safe: `http://localhost:7701/u/<body onload='alert("this is bad");'>`
+    * Jinja templates do this automatically
+* thread local objects (for thread safety) and notes about security
+    * flask protects against XSS. (via flask itself and jinja2)
+        * https://flask.palletsprojects.com/en/1.0.x/advanced_foreword/
+* **security note**: use type hinting
+* try injections: https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/SQLite%20Injection.md
+
+---
+
+* start out with `sqlite`, maybe switch to postgres later
+    * sqlite is purely concurrent and might be too slow for larger apps
+* the `flask-api` directory contains a python package (`__init__.py`) for the app with the application factory (`create_app()`)
+
+
+The following is a short overview of available endpoints:
+
+## list of get endpoints
+
 ## list of post endpoints
 
 grep for `.methods`
@@ -232,33 +291,6 @@ grep for `.commit`
         ├── show.html
         └── user.html
 ```
-
-## database schema
-
-![image](https://user-images.githubusercontent.com/173962/150687869-9d1d31de-7728-43e8-ba88-9b2e3a3328ab.png)
-
-![image](https://user-images.githubusercontent.com/173962/145773177-4b7a9803-14c7-43c1-ad70-7c5093fe7a5c.png)
-
-* [flask (localhost:7701)](http://localhost:7701)
-* *security note: the `.flaskenv` file should not be commited if there are
-any secrets stored in it*
-    * you could use the `.env` file for secrets
-* *security note: when returning HTML (the default) user provided values
-must be `escape()`d to prevent injections*
-    * unsafe: `http://localhost:7701/i/<body onload='alert("this is bad");'>`
-    * safe: `http://localhost:7701/u/<body onload='alert("this is bad");'>`
-    * Jinja templates do this automatically
-* thread local objects (for thread safety) and notes about security
-    * flask protects against XSS. (via flask itself and jinja2)
-        * https://flask.palletsprojects.com/en/1.0.x/advanced_foreword/
-* **security note**: use type hinting
-* try injections: https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/SQLite%20Injection.md
-
----
-
-* start out with `sqlite`, maybe switch to postgres later
-    * sqlite is purely concurrent and might be too slow for larger apps
-* the `flask-api` directory contains a python package (`__init__.py`) for the app with the application factory (`create_app()`)
 
 ## statistics
 
