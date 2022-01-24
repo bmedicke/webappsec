@@ -11,19 +11,19 @@
       class="ml-2 font-medium">username</label>
   <input type="text" name="username" id="username"
     value="" placeholder="username" required
-    class="block ml-2">
+    class="block ml-2 bg-sky-50">
   <label for="password"
-    class="ml-2">password ({{ pwd_min_len }} chars min.)</label>
+    class="ml-2 font-medium">password ({{ pwd_min_len }} chars min.)</label>
   <input type="password" name="password" id="password"
     value="" placeholder="password" pattern='.{{ "{" + pwd_min_len }},}' required
-    class="block ml-2">
+    class="block ml-2 bg-sky-50">
   <label for="password_confirmation"
-    class="ml-2">password confirmation</label>
+    class="ml-2 font-medium">password confirmation</label>
   <input type="password" name="password_confirmation" id="password-content"
-    value="" pattern='.{{ "{" + pwd_min_len }},}' placeholder="confirm password" required
-    class="block ml-2">
+    value="" pattern='.{{ "{" + pwd_min_len }},}' placeholder="password" required
+    class="block ml-2 bg-sky-50">
   <input type="submit" value="register" 
-    class="mt-3 ml-2"/>
+    class="mt-3 ml-2 text-sky-700 hover:text-gray-700 cursor-pointer"/>
   <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 </form>
 
