@@ -36,6 +36,7 @@ of this writeup.)
 * [ ] write tests
 * [ ] deploy app with https certificate
 * [ ] change docstrings to flasgger format
+* [ ] switch to PostGres
 
 # local development setup
 
@@ -171,7 +172,7 @@ To check if configuration changes took affect you can run `flask read-config`:
 
 other interesting libraries to consider:
 
-* [flask-sqlalchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)
+* [flask-sqlalchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/) SQLAlchemy extension for Flask
 * [flask-login](https://flask-login.readthedocs.io/en/latest/) for session handling
 
 # the chat app
