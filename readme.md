@@ -11,7 +11,7 @@ Since the game is still very much work in progress I have focused on creating a 
 <!-- vim-markdown-toc GFM -->
 
 * [TODO](#todo)
-* [local setup](#local-setup)
+* [local development setup](#local-development-setup)
   * [Flask app](#flask-app)
 * [used libraries](#used-libraries)
 * [the chat app](#the-chat-app)
@@ -31,7 +31,7 @@ Since the game is still very much work in progress I have focused on creating a 
 * [ ] write tests
 * [ ] deploy app with https
 
-# local setup
+# local development setup
 
 The app is based on [Flask](https://flask.palletsprojects.com/), a Python micro web framework.
 To get it running in development mode execute the following steps that will install all 
