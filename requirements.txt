@@ -17,7 +17,7 @@ Flask-WTF==1.0.0
 greenlet==1.1.2
 idna==3.3
 inflection==0.5.1
-ipython==7.30.1
+ipython==7.31.1
 isodate==0.6.0
 itsdangerous==1.1.0
 jedi==0.18.1
