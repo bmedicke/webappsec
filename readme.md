@@ -384,6 +384,11 @@ Note the following:
 * I have chosen to `escape()` the input nontheless in case the endpoint is
   edited in the future (or if there's a bug in the endpoint handling)
 * SQL queries in this app use parameterized statements (the sqlite3 library does not support prepared statements)
+* *security note: when returning HTML (the default) user provided values
+must be `escape()`d to prevent injections*
+    * unsafe: `http://localhost:7701/i/<body onload='alert("this is bad");'>`
+    * safe: `http://localhost:7701/u/<body onload='alert("this is bad");'>`
+    * Jinja templates do this automatically (but you can explicitly disable this behaviour)
 
 ## structure of the app
 
@@ -445,11 +450,6 @@ The following ASCII diagram shows the project structure:
 * *security note: the `.flaskenv` file should not be commited if there are
 any secrets stored in it*
     * you sould use the `.env` file for secrets (which is in `.gitignore`)
-* *security note: when returning HTML (the default) user provided values
-must be `escape()`d to prevent injections*
-    * unsafe: `http://localhost:7701/i/<body onload='alert("this is bad");'>`
-    * safe: `http://localhost:7701/u/<body onload='alert("this is bad");'>`
-    * Jinja templates do this automatically (but you can explicitly disable this behaviour)
 
 ### dunder init
 
